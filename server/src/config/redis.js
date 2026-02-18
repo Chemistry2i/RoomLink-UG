@@ -1,13 +1,10 @@
 const redis = require("redis");
 const logger = require("./logger");
 
-// Create Redis client
-const client = redis.createClient({
-  host: process.env.REDIS_HOST || "localhost",
-  port: process.env.REDIS_PORT || 6379,
-  password: process.env.REDIS_PASSWORD || undefined,
-  db: process.env.REDIS_DB || 0,
-});
+// Build Redis connection URL for redis v4+
+const redisUrl = `redis://default:${process.env.REDIS_PASSWORD}@${process.env.REDIS_HOST}:${process.env.REDIS_PORT}/${process.env.REDIS_DB}`;
+
+const client = redis.createClient({ url: redisUrl });
 
 // Event handlers
 client.on("connect", () => {
