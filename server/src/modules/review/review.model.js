@@ -47,6 +47,11 @@ const reviewSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
+
+    ownerResponse: {
+      text: { type: String, maxlength: 500 },
+      respondedAt: Date,
+    },
   },
   { timestamps: true }
 );

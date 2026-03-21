@@ -11,7 +11,21 @@ const uploadService = require("../../services/uploadService");
  * Files: images (max 10), coverImage
  */
 const createHostel = asyncHandler(async (req, res) => {
-  const { name, description, address, coordinates, contactEmail, contactPhone, amenities, policies, checkInTime, checkOutTime } = req.body;
+  let { name, description, address, coordinates, contactEmail, contactPhone, amenities, policies, checkInTime, checkOutTime } = req.body;
+
+  // Parse JSON strings from multipart form data
+  if (typeof address === "string") {
+    try { address = JSON.parse(address); } catch (e) { /* keep as-is */ }
+  }
+  if (typeof coordinates === "string") {
+    try { coordinates = JSON.parse(coordinates); } catch (e) { /* keep as-is */ }
+  }
+  if (typeof amenities === "string") {
+    try { amenities = JSON.parse(amenities); } catch (e) { amenities = []; }
+  }
+  if (typeof policies === "string") {
+    try { policies = JSON.parse(policies); } catch (e) { policies = {}; }
+  }
 
   // Validate required fields
   if (!name || !description || !address || !coordinates || !contactEmail || !contactPhone) {
@@ -32,10 +46,10 @@ const createHostel = asyncHandler(async (req, res) => {
     const imageFiles = Array.isArray(req.files.images) ? req.files.images : [req.files.images];
     
     for (const file of imageFiles.slice(0, 10)) {
-      const uploadedData = await uploadService.uploadFile(file, "hostels");
+      const uploadedData = await uploadService.uploadFile(file.path, "hostels");
       images.push({
-        url: uploadedData.secure_url,
-        publicId: uploadedData.public_id,
+        url: uploadedData.url,
+        publicId: uploadedData.publicId,
       });
     }
 
@@ -47,11 +61,11 @@ const createHostel = asyncHandler(async (req, res) => {
   }
 
   if (req.files && req.files.coverImage) {
-    const coverFile = req.files.coverImage;
-    const coverData = await uploadService.uploadFile(coverFile, "hostels");
+    const coverFile = Array.isArray(req.files.coverImage) ? req.files.coverImage[0] : req.files.coverImage;
+    const coverData = await uploadService.uploadFile(coverFile.path, "hostels");
     coverImage = {
-      url: coverData.secure_url,
-      publicId: coverData.public_id,
+      url: coverData.url,
+      publicId: coverData.publicId,
     };
   }
 
@@ -193,11 +207,23 @@ const updateHostel = asyncHandler(async (req, res) => {
   }
 
   // Check ownership
-  if (hostel.owner.toString() !== req.user._id.toString() && req.user.role !== "ADMIN" && req.user.role !== "SUPER_ADMIN") {
+  const userRole = req.user.role.toLowerCase();
+  if (hostel.owner.toString() !== req.user._id.toString() && userRole !== "admin" && userRole !== "super_admin") {
     throw new ApiError(403, "Not authorized to update this hostel");
   }
 
-  const { name, description, address, amenities, policies, contactEmail, contactPhone, checkInTime, checkOutTime } = req.body;
+  let { name, description, address, amenities, policies, contactEmail, contactPhone, checkInTime, checkOutTime } = req.body;
+
+  // Parse JSON strings from multipart form data
+  if (typeof address === "string") {
+    try { address = JSON.parse(address); } catch (e) { /* keep as-is */ }
+  }
+  if (typeof amenities === "string") {
+    try { amenities = JSON.parse(amenities); } catch (e) { amenities = []; }
+  }
+  if (typeof policies === "string") {
+    try { policies = JSON.parse(policies); } catch (e) { policies = {}; }
+  }
 
   // Update allowed fields
   if (name) hostel.name = name;
@@ -216,10 +242,10 @@ const updateHostel = asyncHandler(async (req, res) => {
       const imageFiles = Array.isArray(req.files.images) ? req.files.images : [req.files.images];
       
       for (const file of imageFiles) {
-        const uploadedData = await uploadService.uploadFile(file, "hostels");
+        const uploadedData = await uploadService.uploadFile(file.path, "hostels");
         hostel.images.push({
-          url: uploadedData.secure_url,
-          publicId: uploadedData.public_id,
+          url: uploadedData.url,
+          publicId: uploadedData.publicId,
         });
       }
 
@@ -236,10 +262,11 @@ const updateHostel = asyncHandler(async (req, res) => {
       if (hostel.coverImage) {
         await uploadService.deleteFile(hostel.coverImage.publicId);
       }
-      const coverData = await uploadService.uploadFile(req.files.coverImage, "hostels");
+      const coverFile = Array.isArray(req.files.coverImage) ? req.files.coverImage[0] : req.files.coverImage;
+      const coverData = await uploadService.uploadFile(coverFile.path, "hostels");
       hostel.coverImage = {
-        url: coverData.secure_url,
-        publicId: coverData.public_id,
+        url: coverData.url,
+        publicId: coverData.publicId,
       };
     }
   }
@@ -265,7 +292,8 @@ const deleteHostel = asyncHandler(async (req, res) => {
   }
 
   // Check ownership
-  if (hostel.owner.toString() !== req.user._id.toString() && req.user.role !== "ADMIN" && req.user.role !== "SUPER_ADMIN") {
+  const delRole = req.user.role.toLowerCase();
+  if (hostel.owner.toString() !== req.user._id.toString() && delRole !== "admin" && delRole !== "super_admin") {
     throw new ApiError(403, "Not authorized to delete this hostel");
   }
 
@@ -295,7 +323,8 @@ const getHostelAnalytics = asyncHandler(async (req, res) => {
   }
 
   // Check ownership or admin
-  if (hostel.owner.toString() !== req.user._id.toString() && req.user.role !== "ADMIN" && req.user.role !== "SUPER_ADMIN") {
+  const analyticsRole = req.user.role.toLowerCase();
+  if (hostel.owner.toString() !== req.user._id.toString() && analyticsRole !== "admin" && analyticsRole !== "super_admin") {
     throw new ApiError(403, "Not authorized to view analytics");
   }
 
@@ -389,10 +418,10 @@ const uploadHostelImages = asyncHandler(async (req, res) => {
   const imageFiles = Array.isArray(req.files.images) ? req.files.images : [req.files.images];
   const uploadedImages = [];
   for (const file of imageFiles.slice(0, 10)) {
-    const uploadedData = await uploadService.uploadFile(file, "hostels");
+    const uploadedData = await uploadService.uploadFile(file.path, "hostels");
     uploadedImages.push({
-      url: uploadedData.secure_url,
-      publicId: uploadedData.public_id,
+      url: uploadedData.url,
+      publicId: uploadedData.publicId,
     });
   }
   hostel.images.push(...uploadedImages);

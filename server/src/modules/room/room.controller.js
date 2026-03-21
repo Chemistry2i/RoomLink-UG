@@ -73,10 +73,10 @@ const createRoom = asyncHandler(async (req, res) => {
       : [req.files.images];
 
     for (const file of imageFiles.slice(0, 10)) {
-      const uploadedData = await uploadService.uploadFile(file, "rooms");
+      const uploadedData = await uploadService.uploadFile(file.path, "rooms");
       images.push({
-        url: uploadedData.secure_url,
-        publicId: uploadedData.public_id,
+        url: uploadedData.url,
+        publicId: uploadedData.publicId,
       });
     }
   }
@@ -281,10 +281,10 @@ const updateRoom = asyncHandler(async (req, res) => {
       : [req.files.images];
 
     for (const file of imageFiles) {
-      const uploadedData = await uploadService.uploadFile(file, "rooms");
+      const uploadedData = await uploadService.uploadFile(file.path, "rooms");
       room.images.push({
-        url: uploadedData.secure_url,
-        publicId: uploadedData.public_id,
+        url: uploadedData.url,
+        publicId: uploadedData.publicId,
       });
     }
 

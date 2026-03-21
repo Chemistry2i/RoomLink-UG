@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "bradlc.vscode-tailwindcss",
+    "dbaeumer.vscode-eslint",
+    "msjsdiag.debugger-for-chrome",
+    "ms-vscode-remote.remote-containers"
+  ]
+}

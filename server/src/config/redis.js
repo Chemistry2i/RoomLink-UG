@@ -2,7 +2,17 @@ const redis = require("redis");
 const logger = require("./logger");
 
 // Build Redis connection URL for redis v4+
-const redisUrl = `redis://default:${process.env.REDIS_PASSWORD}@${process.env.REDIS_HOST}:${process.env.REDIS_PORT}/${process.env.REDIS_DB}`;
+const redisHost = process.env.REDIS_HOST || "localhost";
+const redisPort = process.env.REDIS_PORT || 6379;
+const redisPassword = process.env.REDIS_PASSWORD;
+const redisDb = process.env.REDIS_DB || 0;
+
+let redisUrl;
+if (redisPassword) {
+  redisUrl = `redis://default:${redisPassword}@${redisHost}:${redisPort}/${redisDb}`;
+} else {
+  redisUrl = `redis://${redisHost}:${redisPort}/${redisDb}`;
+}
 
 const client = redis.createClient({ url: redisUrl });
 

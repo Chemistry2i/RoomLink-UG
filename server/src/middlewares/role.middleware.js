@@ -43,8 +43,9 @@ const authorize = (...allowedRoles) => {
     }
 
     const userRole = req.user.role;
+    const normalizedAllowed = allowedRoles.map((r) => r.toLowerCase());
 
-  if (!allowedRoles.includes(userRole)) {
+  if (!normalizedAllowed.includes(userRole.toLowerCase())) {
     throw new ApiError(
       403,
       `Forbidden. Required role(s): ${allowedRoles.join(", ")}. Your role: ${userRole}`
@@ -85,7 +86,7 @@ const checkRoleHierarchy = (...allowedRoles) => {
       throw new ApiError(401, "User not authenticated");
     }
 
-    if (!allowedRoles.includes(req.user.role)) {
+    if (!allowedRoles.map((r) => r.toLowerCase()).includes(req.user.role.toLowerCase())) {
       throw new ApiError(403, "Insufficient permissions for this action");
     }
 

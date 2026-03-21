@@ -20,6 +20,8 @@ const authenticate = asyncHandler(async (req, res, next) => {
 
     // Verify token
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    // Normalize id field - JWT uses 'id', some code expects '_id'
+    decoded._id = decoded._id || decoded.id;
     req.user = decoded;
     req.userId = decoded._id;
 

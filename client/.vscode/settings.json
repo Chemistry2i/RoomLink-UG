@@ -1,0 +1,16 @@
+{
+  "css.lint.unknownAtRules": "ignore",
+  "css.lint.compatibleVendorPrefixes": "warning",
+  "css.lint.vendorPrefix": "warning",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}

@@ -63,7 +63,7 @@ const register = asyncHandler(async (req, res) => {
     logger.info(`User registered: ${user.email} (role: ${role}${role === "staff" ? ", type: " + staffType : ""})`);
 
     // Send welcome email with verification link
-    const verificationLink = `${process.env.FRONTEND_URL || "http://localhost:3000"}/auth/verify-email?token=${emailVerificationToken}`;
+    const verificationLink = `${process.env.FRONTEND_URL || "http://localhost:5173"}/verify-email?token=${emailVerificationToken}`;
     try {
       await sendWelcomeEmail(user.email, user.name, verificationLink);
     } catch (emailError) {
@@ -366,7 +366,7 @@ const resendVerificationEmail = asyncHandler(async (req, res) => {
     logger.info(`Resending verification email: ${user.email}`);
 
     // Send welcome email with new verification link
-    const verificationLink = `${process.env.FRONTEND_URL || "http://localhost:3000"}/auth/verify-email?token=${emailVerificationToken}`;
+    const verificationLink = `${process.env.FRONTEND_URL || "http://localhost:5173"}/verify-email?token=${emailVerificationToken}`;
     try {
       await sendWelcomeEmail(user.email, user.name, verificationLink);
     } catch (emailError) {
@@ -412,7 +412,7 @@ const requestPasswordReset = asyncHandler(async (req, res) => {
     logger.info(`Password reset requested: ${user.email}`);
 
     // Send password reset email
-    const resetLink = `${process.env.FRONTEND_URL || "http://localhost:3000"}/auth/reset-password?token=${resetToken}`;
+    const resetLink = `${process.env.FRONTEND_URL || "http://localhost:5173"}/reset-password?token=${resetToken}`;
     try {
       await sendPasswordResetEmail(user.email, user.name, resetLink);
     } catch (emailError) {
@@ -486,7 +486,7 @@ const resendPasswordReset = asyncHandler(async (req, res) => {
     logger.info(`Resending password reset email: ${user.email}`);
 
     // Send reset email
-    const resetLink = `${process.env.FRONTEND_URL || "http://localhost:3000"}/auth/reset-password?token=${resetToken}`;
+    const resetLink = `${process.env.FRONTEND_URL || "http://localhost:5173"}/reset-password?token=${resetToken}`;
     try {
       await sendPasswordResetEmail(user.email, user.name, resetLink);
     } catch (emailError) {

@@ -28,7 +28,11 @@ const auditMiddleware = async (req, res, next) => {
     let description = `${req.method} ${req.originalUrl}`;
 
     // Parse the route to determine module and action
-    const pathParts = req.path.split("/").filter((p) => p);
+    let pathParts = req.path.split("/").filter((p) => p);
+
+    // Skip 'api' and version prefix (e.g., 'v1') if present
+    if (pathParts[0] === "api") pathParts.shift();
+    if (pathParts[0] && /^v\d+$/.test(pathParts[0])) pathParts.shift();
 
     if (pathParts.length > 0) {
       const moduleName = pathParts[0];
@@ -38,15 +42,20 @@ const auditMiddleware = async (req, res, next) => {
         auth: "Auth",
         users: "Users",
         hostels: "Hostels",
+        rooms: "Rooms",
         bookings: "Bookings",
         reviews: "Reviews",
         complaints: "Complaints",
         payments: "Payments",
+        settlements: "Payments",
         dashboard: "Admin",
         admin: "Admin",
+        reports: "Reports",
+        audit: "Audit",
+        upload: "Upload",
       };
 
-      module = moduleMap[moduleName] || moduleName;
+      module = moduleMap[moduleName] || "Unknown";
 
       // Determine action based on HTTP method
       if (req.method === "POST") {
@@ -77,11 +86,16 @@ const auditMiddleware = async (req, res, next) => {
       // Log based on response status
       const isError = res.statusCode >= 400;
 
+      // Validate values before logging to prevent Mongoose cast errors
+      const mongoose = require("mongoose");
+      const validUserId = user && mongoose.Types.ObjectId.isValid(user) ? user : null;
+      const validResourceId = resourceId && mongoose.Types.ObjectId.isValid(resourceId) ? resourceId : null;
+
       AuditService.log({
         action,
         module,
-        userId: user || "Anonymous",
-        resourceId,
+        userId: validUserId,
+        resourceId: validResourceId,
         resourceType,
         changes: req.body ? sanitizeBody(req.body) : {},
         ipAddress,

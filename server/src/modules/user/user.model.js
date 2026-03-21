@@ -45,7 +45,7 @@ const userSchema = new mongoose.Schema(
     // Staff-specific field (required when role is STAFF)
     staffType: {
       type: String,
-      enum: ["MANAGER", "RECEPTIONIST", "CLEANER"],
+      enum: ["MANAGER", "RECEPTIONIST", "CLEANER", null],
       default: null,
     },
 

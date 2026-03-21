@@ -5,7 +5,7 @@ const auditLogSchema = new mongoose.Schema(
     userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      required: true,
+      default: null,
     },
 
     action: {
@@ -34,6 +34,11 @@ const auditLogSchema = new mongoose.Schema(
         "Payments",
         "Auth",
         "Admin",
+        "Rooms",
+        "Reports",
+        "Audit",
+        "Upload",
+        "Unknown",
       ],
     },
 

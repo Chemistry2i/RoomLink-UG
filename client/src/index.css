@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+@import '@fortawesome/fontawesome-free/css/all.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-feature-settings: "rlig" 1, "liga" 1;
+}
+
+body {
+  font-family: 'Outfit', 'Inter', system-ui, -apple-system, sans-serif !important;
+  background-color: #fafafa;
+  color: #222222;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.02em;
+}
+
+* {
+  font-family: 'Outfit', 'Inter', system-ui, -apple-system, sans-serif !important;
+}
+
+@layer components {
+  .btn-primary {
+    @apply px-6 py-2 bg-red-500 text-white rounded-lg font-semibold hover:bg-red-600 transition-colors;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-2 border border-gray-300 text-gray-900 rounded-lg font-semibold hover:border-gray-400 transition-colors;
+  }
+
+  .card {
+    @apply bg-white rounded-xl shadow-sm hover:shadow-lg transition-shadow overflow-hidden;
+  }
+
+  .container-max {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Typography - Global Outfit Font */
+  h1, h2, h3, h4, h5, h6, p, span, a, button, label {
+    font-family: 'Outfit', 'Inter', system-ui, -apple-system, sans-serif !important;
+  }
+
+  h1 {
+    @apply font-bold;
+    font-family: 'Outfit', system-ui, sans-serif !important;
+  }
+
+  h2 {
+    @apply font-bold;
+    font-family: 'Outfit', system-ui, sans-serif !important;
+  }
+
+  h3 {
+    @apply font-semibold;
+    font-family: 'Outfit', system-ui, sans-serif !important;
+  }
+
+  h4,
+  h5,
+  h6 {
+    @apply font-semibold;
+    font-family: 'Outfit', system-ui, sans-serif !important;
+  }
+
+  p {
+    font-family: 'Outfit', system-ui, sans-serif !important;
+  }
+
+  /* Input Styling */
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="date"],
+  input[type="number"],
+  input[type="search"],
+  input[type="tel"],
+  textarea,
+  select {
+    color: #222222 !important;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: rgb(107, 114, 128) !important;
+    opacity: 1 !important;
+  }
+}

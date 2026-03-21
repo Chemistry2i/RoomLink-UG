@@ -27,7 +27,7 @@ app.use(hpp());
 // CORS Configuration
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL || "http://localhost:5173",
+    origin: process.env.FRONTEND_URL || "https://curly-halibut-pjqpq9rpwv4pfv5x-5173.app.github.dev",
     credentials: true,
     optionsSuccessStatus: 200,
   })
@@ -45,6 +45,10 @@ app.use(auditMiddleware);
 // Body Parser
 app.use(express.json({ limit: "10kb" }));
 app.use(express.urlencoded({ limit: "10kb", extended: true }));
+
+// Serve uploaded files statically
+const path = require("path");
+app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
 
 // Swagger API Documentation
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));

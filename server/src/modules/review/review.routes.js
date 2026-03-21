@@ -9,12 +9,14 @@ const { reviewLimiter } = require("../../middlewares/rateLimit.middleware");
  * GET    /api/v1/reviews/hostel/:hostelId
  * POST   /api/v1/reviews
  * PATCH  /api/v1/reviews/:id
+ * POST   /api/v1/reviews/:id/reply
  * DELETE /api/v1/reviews/:id
  */
 
 router.get("/hostel/:hostelId", reviewController.getReviews);
 router.post("/", authenticate, reviewLimiter, reviewController.createReview);
 router.patch("/:id", authenticate, reviewController.updateReview);
+router.post("/:id/reply", authenticate, reviewController.replyToReview);
 router.delete("/:id", authenticate, reviewController.deleteReview);
 
 module.exports = router;

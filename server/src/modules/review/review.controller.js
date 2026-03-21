@@ -278,9 +278,47 @@ const deleteReview = asyncHandler(async (req, res) => {
   );
 });
 
+/**
+ * Reply to a review (host only)
+ * POST /api/v1/reviews/:id/reply
+ */
+const replyToReview = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  const { text } = req.body;
+  const userId = req.user._id;
+
+  if (!text || !text.trim()) {
+    throw new ApiError(400, "Reply text is required");
+  }
+
+  const review = await Review.findById(id).populate("hostel");
+  if (!review) {
+    throw new ApiError(404, "Review not found");
+  }
+
+  // Verify the current user owns the hostel
+  const hostel = await Hostel.findById(review.hostel._id || review.hostel);
+  if (!hostel || hostel.owner.toString() !== userId.toString()) {
+    throw new ApiError(403, "Only the hostel owner can reply to this review");
+  }
+
+  review.ownerResponse = {
+    text: text.trim(),
+    respondedAt: new Date(),
+  };
+  await review.save();
+
+  logger.info(`Host ${userId} replied to review ${id}`);
+
+  return res.status(200).json(
+    new ApiResponse(200, review, "Reply added successfully")
+  );
+});
+
 module.exports = {
   createReview,
   getReviews,
   updateReview,
   deleteReview,
+  replyToReview,
 };
