@@ -27,13 +27,13 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-red-500 to-red-600 text-white py-32">
+      <section className="bg-sky-500 text-white py-32">
         <div className="container-max">
           <div className="text-center mb-12">
             <h1 className="text-5xl font-bold mb-4">
               Explore the World, Stay Anywhere
             </h1>
-            <p className="text-xl text-red-100">
+            <p className="text-xl text-sky-100">
               Find your perfect hostel and connect with travelers worldwide
             </p>
           </div>
@@ -51,32 +51,32 @@ export default function Home() {
           <h2 className="text-4xl font-bold text-center mb-12">Why RoomLink?</h2>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="text-center">
-              <div className="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Globe size={32} className="text-red-500" />
+              <div className="bg-sky-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Globe size={32} className="text-sky-500" />
               </div>
               <h3 className="font-bold text-lg mb-2">Global Network</h3>
               <p className="text-gray-600">Properties in 500+ cities worldwide</p>
             </div>
 
             <div className="text-center">
-              <div className="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Users size={32} className="text-red-500" />
+              <div className="bg-sky-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Users size={32} className="text-sky-500" />
               </div>
               <h3 className="font-bold text-lg mb-2">Meet Travelers</h3>
               <p className="text-gray-600">Share experiences with guests from everywhere</p>
             </div>
 
             <div className="text-center">
-              <div className="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Shield size={32} className="text-red-500" />
+              <div className="bg-sky-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Shield size={32} className="text-sky-500" />
               </div>
               <h3 className="font-bold text-lg mb-2">Secure Booking</h3>
               <p className="text-gray-600">Safe payments and verified hosts</p>
             </div>
 
             <div className="text-center">
-              <div className="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Search size={32} className="text-red-500" />
+              <div className="bg-sky-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Search size={32} className="text-sky-500" />
               </div>
               <h3 className="font-bold text-lg mb-2">Easy Search</h3>
               <p className="text-gray-600">Find what you need in seconds</p>
@@ -110,13 +110,13 @@ export default function Home() {
       {/* CTA Section */}
       <section className="py-16 px-4">
         <div className="container-max">
-          <div className="bg-gradient-to-r from-red-500 to-red-600 text-white py-16 px-8 rounded-2xl shadow-xl">
+          <div className="bg-sky-500 text-white py-16 px-8 rounded-2xl shadow-xl">
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="text-4xl font-bold mb-4">Become a Host</h2>
-              <p className="text-xl text-red-100 mb-8">
+              <p className="text-xl text-sky-100 mb-8">
                 Share your space and earn money hosting travelers
               </p>
-              <button className="bg-white text-red-500 px-8 py-3 rounded-full font-bold hover:bg-gray-100 hover:shadow-lg transition-all inline-flex items-center gap-2">
+              <button className="bg-white text-sky-500 px-8 py-3 rounded-full font-bold hover:bg-gray-100 hover:shadow-lg transition-all inline-flex items-center gap-2">
                 Get Started
                 <ArrowRight size={20} />
               </button>

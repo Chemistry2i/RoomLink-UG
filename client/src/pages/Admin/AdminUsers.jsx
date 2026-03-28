@@ -67,7 +67,7 @@ export default function AdminUsers() {
       accessor: 'role',
       render: (row) => {
         const roleColors = {
-          admin: 'bg-red-100 text-red-700',
+          admin: 'bg-sky-100 text-sky-700',
           host: 'bg-purple-100 text-purple-700',
           staff: 'bg-blue-100 text-blue-700',
           user: 'bg-gray-100 text-gray-700',
@@ -85,7 +85,7 @@ export default function AdminUsers() {
       accessor: (row) => row.isSuspended ? 'suspended' : row.isVerified ? 'verified' : 'unverified',
       render: (row) => {
         if (row.isSuspended) {
-          return <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-red-100 text-red-700">Suspended</span>
+          return <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-sky-100 text-sky-700 border border-sky-200">Suspended</span>
         }
         if (row.isVerified) {
           return <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-700">Verified</span>
@@ -112,18 +112,20 @@ export default function AdminUsers() {
           {row.isSuspended ? (
             <button
               onClick={() => setActionModal({ open: true, user: row, action: 'unsuspend' })}
-              className="p-2 text-gray-400 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors"
+              className="flex items-center gap-1.5 px-3 py-1.5 text-green-600 hover:bg-green-50 rounded-lg border-2 border-green-200 transition-colors text-xs font-semibold"
               title="Unsuspend"
             >
-              <CheckCircle size={16} />
+              <CheckCircle size={14} />
+              Activate
             </button>
           ) : (
             <button
               onClick={() => setActionModal({ open: true, user: row, action: 'suspend' })}
-              className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+              className="flex items-center gap-1.5 px-3 py-1.5 text-sky-600 hover:bg-sky-50 rounded-lg border-2 border-sky-200 transition-colors text-xs font-semibold"
               title="Suspend"
             >
-              <Ban size={16} />
+              <Ban size={14} />
+              Suspend
             </button>
           )}
         </div>
@@ -164,8 +166,8 @@ export default function AdminUsers() {
             </button>
             <button
               onClick={handleAction}
-              className={`px-4 py-2 text-white rounded-lg font-medium ${
-                actionModal.action === 'suspend' ? 'bg-red-600 hover:bg-red-700' : 'bg-green-600 hover:bg-green-700'
+              className={`px-4 py-2 text-white rounded-lg font-medium border-2 ${
+                actionModal.action === 'suspend' ? 'bg-sky-500 border-sky-500 hover:bg-sky-600' : 'bg-green-600 border-green-600 hover:bg-green-700'
               }`}
             >
               {actionModal.action === 'suspend' ? 'Suspend' : 'Unsuspend'}
@@ -185,7 +187,7 @@ export default function AdminUsers() {
               value={reason}
               onChange={(e) => setReason(e.target.value)}
               rows={3}
-              className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-400 resize-none"
+              className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400/20 focus:border-sky-400 resize-none"
               placeholder="Reason for suspension..."
             />
           </div>

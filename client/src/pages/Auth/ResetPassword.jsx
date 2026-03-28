@@ -56,8 +56,8 @@ export default function ResetPassword() {
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4">
       <div className="w-full max-w-md bg-white rounded-xl shadow-lg p-8">
         <div className="text-center mb-8">
-          <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <Lock size={32} className="text-red-500" />
+          <div className="w-16 h-16 bg-sky-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Lock size={32} className="text-sky-500" />
           </div>
           <h2 className="text-3xl font-bold">Reset Password</h2>
           <p className="text-gray-600 mt-2">Create a new password for your account</p>
@@ -75,7 +75,7 @@ export default function ResetPassword() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full pl-10 pr-10 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none text-gray-900 placeholder-gray-500"
+                  className="w-full pl-10 pr-10 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-400 focus:border-transparent outline-none text-gray-900 placeholder-gray-500"
                   required
                 />
                 <button
@@ -101,7 +101,7 @@ export default function ResetPassword() {
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full pl-10 pr-10 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none text-gray-900 placeholder-gray-500"
+                  className="w-full pl-10 pr-10 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-400 focus:border-transparent outline-none text-gray-900 placeholder-gray-500"
                   required
                 />
                 <button
@@ -115,9 +115,9 @@ export default function ResetPassword() {
             </div>
 
             {/* Password Requirements */}
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
-              <p className="text-xs font-semibold text-blue-900 mb-2">Password Requirements:</p>
-              <ul className="text-xs text-blue-800 space-y-1">
+            <div className="bg-sky-50 border border-sky-200 rounded-lg p-3">
+              <p className="text-xs font-semibold text-sky-900 mb-2">Password Requirements:</p>
+              <ul className="text-xs text-sky-800 space-y-1">
                 <li className={password.length >= 8 ? 'text-green-600' : ''}>
                   ✓ At least 8 characters
                 </li>
@@ -150,7 +150,7 @@ export default function ResetPassword() {
 
         {!reset && (
           <div className="mt-6 text-center">
-            <Link to="/login" className="inline-flex items-center gap-2 text-red-500 font-semibold hover:text-red-600">
+            <Link to="/login" className="inline-flex items-center gap-2 text-sky-500 font-semibold hover:text-sky-600">
               <ArrowLeft size={16} />
               Back to Login
             </Link>

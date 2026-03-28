@@ -3,10 +3,10 @@
  * Flat design, no gradients, professional colors
  * 
  * DESIGN SYSTEM:
- * - Primary: #FF5A5F (Airbnb red)
+ * - Primary: #87CEEB (Sky Blue)
  * - Success: #00A699 (Teal)
  * - Warning: #FFB800 (Amber)
- * - Error: #E74C3C (Red)
+ * - Error: #87CEEB (Sky Blue)
  * - Info: #0073E6 (Blue)
  * - Text: #222222 (Dark gray)
  * - Background: #FAFAFA (Off-white)
@@ -16,7 +16,7 @@
 const templates = {
   /**
    * Registration Welcome Email
-   * Color: Primary Red (#FF5A5F)
+   * Color: Primary Sky Blue (#87CEEB)
    */
   registrationWelcome: (userName, verificationLink) => `
     <!DOCTYPE html>
@@ -41,7 +41,7 @@ const templates = {
                 overflow: hidden;
             }
             .header {
-                background-color: #FF5A5F;
+                background-color: #87CEEB;
                 color: #FFFFFF;
                 padding: 50px 30px;
                 text-align: center;
@@ -73,7 +73,7 @@ const templates = {
             }
             .button {
                 display: inline-block;
-                background-color: #FF5A5F;
+                background-color: #87CEEB;
                 color: #FFFFFF;
                 padding: 14px 32px;
                 text-decoration: none;
@@ -87,7 +87,7 @@ const templates = {
             }
             .highlight {
                 font-weight: 600;
-                color: #FF5A5F;
+                color: #87CEEB;
             }
             .note {
                 color: #717171;
@@ -732,7 +732,7 @@ const templates = {
 
   /**
    * Review Invitation Email
-   * Color: Primary Red (#FF5A5F)
+   * Color: Primary Sky Blue (#87CEEB)
    */
   reviewInvitation: (userName, hostelName, bookingId) => `
     <!DOCTYPE html>
@@ -757,7 +757,7 @@ const templates = {
                 overflow: hidden;
             }
             .header {
-                background-color: #FF5A5F;
+                background-color: #87CEEB;
                 color: #FFFFFF;
                 padding: 50px 30px;
                 text-align: center;
@@ -781,11 +781,11 @@ const templates = {
                 color: #222222;
             }
             .benefit-box {
-                background-color: #FFE5E4;
+                background-color: #F0F8FF;
                 padding: 20px;
                 border-radius: 8px;
                 margin: 20px 0;
-                border-left: 4px solid #FF5A5F;
+                border-left: 4px solid #87CEEB;
             }
             .benefit-box ul {
                 margin: 10px 0 0 20px;
@@ -796,7 +796,7 @@ const templates = {
             }
             .button {
                 display: inline-block;
-                background-color: #FF5A5F;
+                background-color: #87CEEB;
                 color: #FFFFFF;
                 padding: 14px 32px;
                 text-decoration: none;
@@ -854,7 +854,7 @@ const templates = {
 
   /**
    * Password Reset Email
-   * Color: Error Red (#E74C3C)
+   * Color: Primary Sky Blue (#87CEEB)
    */
   passwordReset: (userName, resetLink) => `
     <!DOCTYPE html>
@@ -879,7 +879,7 @@ const templates = {
                 overflow: hidden;
             }
             .header {
-                background-color: #E74C3C;
+                background-color: #87CEEB;
                 color: #FFFFFF;
                 padding: 50px 30px;
                 text-align: center;
@@ -904,7 +904,7 @@ const templates = {
             }
             .button {
                 display: inline-block;
-                background-color: #0073E6;
+                background-color: #87CEEB;
                 color: #FFFFFF;
                 padding: 14px 32px;
                 text-decoration: none;
@@ -917,17 +917,17 @@ const templates = {
                 opacity: 0.9;
             }
             .warning {
-                background-color: #FADBD8;
+                background-color: #F0F8FF;
                 padding: 20px;
                 border-radius: 8px;
                 margin: 20px 0;
-                border-left: 4px solid #E74C3C;
+                border-left: 4px solid #87CEEB;
             }
             .warning p {
                 margin: 10px 0;
             }
             .warning strong {
-                color: #E74C3C;
+                color: #87CEEB;
             }
             .footer {
                 text-align: center;
@@ -1391,4 +1391,3 @@ const templates = {
 };
 
 module.exports = templates;
-

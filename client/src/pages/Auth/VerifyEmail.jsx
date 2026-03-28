@@ -46,8 +46,8 @@ export default function VerifyEmail() {
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4">
       <div className="w-full max-w-md bg-white rounded-xl shadow-lg p-8">
         <div className="text-center mb-8">
-          <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <Mail size={32} className="text-red-500" />
+          <div className="w-16 h-16 bg-sky-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Mail size={32} className="text-sky-500" />
           </div>
           <h2 className="text-3xl font-bold">Verify Your Email</h2>
           <p className="text-gray-600 mt-2">Verifying your email address...</p>
@@ -55,7 +55,7 @@ export default function VerifyEmail() {
 
         {!verified ? (
           <div className="flex flex-col items-center justify-center py-8">
-            <div className="w-10 h-10 border-4 border-gray-300 border-t-red-500 rounded-full animate-spin" />
+            <div className="w-10 h-10 border-4 border-gray-300 border-t-sky-400 rounded-full animate-spin" />
             <p className="text-gray-600 mt-6">
               {loading ? 'Verifying email...' : 'Please wait while we verify your email.'}
             </p>
@@ -72,7 +72,7 @@ export default function VerifyEmail() {
 
         {!verified && (
           <div className="mt-6 text-center">
-            <Link to="/login" className="inline-flex items-center gap-2 text-red-500 font-semibold hover:text-red-600">
+            <Link to="/login" className="inline-flex items-center gap-2 text-sky-500 font-semibold hover:text-sky-600">
               <ArrowLeft size={16} />
               Back to Login
             </Link>

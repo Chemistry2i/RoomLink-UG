@@ -16,10 +16,10 @@ const templates = {
         <style>
             body { font-family: Arial, sans-serif; background-color: #f5f5f5; }
             .container { max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-            .header { background-color: #2c3e50; color: white; padding: 20px; text-align: center; border-radius: 8px 8px 0 0; }
+            .header { background-color: #87CEEB; color: white; padding: 20px; text-align: center; border-radius: 8px 8px 0 0; }
             .header h1 { margin: 0; }
             .content { padding: 20px; }
-            .button { display: inline-block; background-color: #3498db; color: white; padding: 12px 30px; text-decoration: none; border-radius: 4px; margin-top: 20px; }
+            .button { display: inline-block; background-color: #87CEEB; color: white; padding: 12px 30px; text-decoration: none; border-radius: 4px; margin-top: 20px; }
             .footer { text-align: center; color: #7f8c8d; font-size: 12px; padding-top: 20px; border-top: 1px solid #ecf0f1; }
         </style>
     </head>
@@ -116,8 +116,8 @@ const templates = {
         <style>
             body { font-family: Arial, sans-serif; background-color: #f5f5f5; }
             .container { max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 20px; border-radius: 8px; }
-            .header { background-color: #3498db; color: white; padding: 20px; text-align: center; }
-            .booking-details { background-color: #ecf0f1; padding: 15px; border-left: 4px solid #3498db; margin: 20px 0; }
+            .header { background-color: #87CEEB; color: white; padding: 20px; text-align: center; }
+            .booking-details { background-color: #ecf0f1; padding: 15px; border-left: 4px solid #87CEEB; margin: 20px 0; }
             .booking-details p { margin: 8px 0; }
             .button { display: inline-block; background-color: #27ae60; color: white; padding: 12px 30px; text-decoration: none; border-radius: 4px; margin-top: 20px; }
             .footer { text-align: center; color: #7f8c8d; font-size: 12px; padding-top: 20px; border-top: 1px solid #ecf0f1; }
@@ -177,7 +177,7 @@ const templates = {
         <style>
             body { font-family: Arial, sans-serif; background-color: #f5f5f5; }
             .container { max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 20px; border-radius: 8px; }
-            .header { background-color: #e74c3c; color: white; padding: 20px; text-align: center; }
+            .header { background-color: #87CEEB; color: white; padding: 20px; text-align: center; }
             .content { padding: 20px; }
             .refund-box { background-color: #fff3cd; padding: 15px; border-left: 4px solid #ffc107; margin: 20px 0; }
             .footer { text-align: center; color: #7f8c8d; font-size: 12px; padding-top: 20px; }
@@ -331,9 +331,9 @@ const templates = {
         <style>
             body { font-family: Arial, sans-serif; background-color: #f5f5f5; }
             .container { max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 20px; border-radius: 8px; }
-            .header { background-color: #9b59b6; color: white; padding: 20px; text-align: center; }
+            .header { background-color: #87CEEB; color: white; padding: 20px; text-align: center; }
             .content { padding: 20px; }
-            .button { display: inline-block; background-color: #9b59b6; color: white; padding: 12px 30px; text-decoration: none; border-radius: 4px; margin-top: 20px; }
+            .button { display: inline-block; background-color: #87CEEB; color: white; padding: 12px 30px; text-decoration: none; border-radius: 4px; margin-top: 20px; }
             .footer { text-align: center; color: #7f8c8d; font-size: 12px; padding-top: 20px; }
         </style>
     </head>
@@ -376,10 +376,10 @@ const templates = {
         <style>
             body { font-family: Arial, sans-serif; background-color: #f5f5f5; }
             .container { max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 20px; border-radius: 8px; }
-            .header { background-color: #e74c3c; color: white; padding: 20px; text-align: center; }
+            .header { background-color: #87CEEB; color: white; padding: 20px; text-align: center; }
             .content { padding: 20px; }
             .warning { background-color: #fff3cd; padding: 15px; border-left: 4px solid #ffc107; margin: 20px 0; }
-            .button { display: inline-block; background-color: #3498db; color: white; padding: 12px 30px; text-decoration: none; border-radius: 4px; margin-top: 20px; }
+            .button { display: inline-block; background-color: #87CEEB; color: white; padding: 12px 30px; text-decoration: none; border-radius: 4px; margin-top: 20px; }
             .footer { text-align: center; color: #7f8c8d; font-size: 12px; padding-top: 20px; }
         </style>
     </head>
@@ -541,14 +541,14 @@ const templates = {
         <style>
             body { font-family: Arial, sans-serif; background-color: #f5f5f5; }
             .container { max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-            .header { background-color: #3498db; color: white; padding: 20px; text-align: center; border-radius: 8px 8px 0 0; }
+            .header { background-color: #87CEEB; color: white; padding: 20px; text-align: center; border-radius: 8px 8px 0 0; }
             .header h1 { margin: 0; }
             .content { padding: 20px; }
             .details { background-color: #f9f9f9; padding: 15px; border-radius: 4px; margin: 20px 0; }
             .detail-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #ecf0f1; }
             .detail-row:last-child { border-bottom: none; }
             .label { font-weight: bold; color: #2c3e50; }
-            .amount { color: #3498db; font-weight: bold; font-size: 16px; }
+            .amount { color: #87CEEB; font-weight: bold; font-size: 16px; }
             .footer { text-align: center; color: #7f8c8d; font-size: 12px; padding-top: 20px; border-top: 1px solid #ecf0f1; }
         </style>
     </head>

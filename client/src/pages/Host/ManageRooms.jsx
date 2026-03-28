@@ -132,7 +132,7 @@ export default function ManageRooms() {
                   min="1"
                   value={form.totalRooms}
                   onChange={(e) => setForm({ ...form, totalRooms: Number(e.target.value) })}
-                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-400"
+                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400/20 focus:border-sky-400"
                   required
                 />
               </div>
@@ -144,7 +144,7 @@ export default function ManageRooms() {
                   max={form.totalRooms}
                   value={form.availableRooms}
                   onChange={(e) => setForm({ ...form, availableRooms: Number(e.target.value) })}
-                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-400"
+                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400/20 focus:border-sky-400"
                   required
                 />
               </div>
@@ -158,7 +158,7 @@ export default function ManageRooms() {
                   max="100"
                   value={form.weeklyDiscount}
                   onChange={(e) => setForm({ ...form, weeklyDiscount: Number(e.target.value) })}
-                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-400"
+                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400/20 focus:border-sky-400"
                 />
               </div>
               <div>
@@ -169,7 +169,7 @@ export default function ManageRooms() {
                   max="100"
                   value={form.monthlyDiscount}
                   onChange={(e) => setForm({ ...form, monthlyDiscount: Number(e.target.value) })}
-                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-400"
+                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400/20 focus:border-sky-400"
                 />
               </div>
             </div>
@@ -249,11 +249,11 @@ export default function ManageRooms() {
           className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold transition-colors ${
             row.availableRooms > 0
               ? 'bg-green-100 text-green-700'
-              : 'bg-red-100 text-red-600'
+              : 'bg-sky-100 text-sky-600 border border-sky-200'
           }`}
         >
           {row.availableRooms > 0 ? <ToggleRight size={14} /> : <ToggleLeft size={14} />}
-          {row.availableRooms > 0 ? 'Yes' : 'No'}
+          {row.availableRooms > 0 ? 'Available' : 'Full'}
         </button>
       ),
     },
@@ -262,11 +262,13 @@ export default function ManageRooms() {
       label: '',
       render: (row) => (
         <div className="flex items-center gap-2">
-          <button onClick={() => openEdit(row)} className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors">
-            <Edit2 size={16} />
+          <button onClick={() => openEdit(row)} className="flex items-center gap-1.5 px-3 py-1.5 text-sky-600 hover:bg-sky-50 rounded-lg border-2 border-sky-200 transition-colors text-xs font-semibold">
+            <Edit2 size={14} />
+            Edit Room
           </button>
-          <button onClick={() => setDeleteModal({ open: true, room: row })} className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors">
-            <Trash2 size={16} />
+          <button onClick={() => setDeleteModal({ open: true, room: row })} className="flex items-center gap-1.5 px-3 py-1.5 text-sky-600 hover:bg-sky-50 rounded-lg border-2 border-sky-200 transition-colors text-xs font-semibold">
+            <Trash2 size={14} />
+            Delete
           </button>
         </div>
       ),
@@ -307,7 +309,7 @@ export default function ManageRooms() {
             <button onClick={() => { setModalOpen(false); resetForm() }} className="px-4 py-2 border border-gray-300 rounded-lg font-medium hover:bg-gray-50">
               Cancel
             </button>
-            <button onClick={handleSubmit} disabled={loading} className="px-4 py-2 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 disabled:opacity-50">
+            <button onClick={handleSubmit} disabled={loading} className="px-4 py-2 bg-sky-500 text-white rounded-lg font-medium border-2 border-sky-500 hover:bg-sky-600 disabled:opacity-50">
               {loading ? 'Saving...' : editingRoom ? 'Update Room' : 'Create Room'}
             </button>
           </>
@@ -320,7 +322,7 @@ export default function ManageRooms() {
               type="text"
               value={form.roomNumber}
               onChange={(e) => setForm({ ...form, roomNumber: e.target.value })}
-              className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-400"
+              className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400/20 focus:border-sky-400"
               placeholder="e.g., Room 101"
               required
             />
@@ -332,7 +334,7 @@ export default function ManageRooms() {
               <select
                 value={form.roomType}
                 onChange={(e) => setForm({ ...form, roomType: e.target.value })}
-                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-400"
+                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400/20 focus:border-sky-400"
               >
                 {ROOM_TYPES.map((t) => (
                   <option key={t} value={t}>{t}</option>
@@ -345,7 +347,7 @@ export default function ManageRooms() {
                 type="number"
                 value={form.floor}
                 onChange={(e) => setForm({ ...form, floor: Number(e.target.value) })}
-                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-400"
+                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400/20 focus:border-sky-400"
               />
             </div>
             <div>
@@ -356,7 +358,7 @@ export default function ManageRooms() {
                 max="20"
                 value={form.capacity}
                 onChange={(e) => setForm({ ...form, capacity: Number(e.target.value) })}
-                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-400"
+                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400/20 focus:border-sky-400"
               />
             </div>
           </div>
@@ -367,7 +369,7 @@ export default function ManageRooms() {
               <select
                 value={form.bedConfiguration}
                 onChange={(e) => setForm({ ...form, bedConfiguration: e.target.value })}
-                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-400"
+                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400/20 focus:border-sky-400"
               >
                 {BED_CONFIGURATIONS.map((b) => (
                   <option key={b} value={b}>{b}</option>
@@ -381,7 +383,7 @@ export default function ManageRooms() {
                 min="1"
                 value={form.totalBeds}
                 onChange={(e) => setForm({ ...form, totalBeds: Number(e.target.value) })}
-                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-400"
+                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400/20 focus:border-sky-400"
               />
             </div>
           </div>
@@ -411,7 +413,7 @@ export default function ManageRooms() {
               type="number"
               value={form.pricePerSemester}
               onChange={(e) => setForm({ ...form, pricePerSemester: e.target.value })}
-              className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-400"
+              className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400/20 focus:border-sky-400"
               placeholder="e.g., 500000"
               required
             />
@@ -422,7 +424,7 @@ export default function ManageRooms() {
               <select
                 value={form.viewType}
                 onChange={(e) => setForm({ ...form, viewType: e.target.value })}
-                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-400 mb-3"
+                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400/20 focus:border-sky-400 mb-3"
               >
                 {VIEW_TYPES.map((v) => (
                   <option key={v} value={v}>{v}</option>
@@ -436,7 +438,7 @@ export default function ManageRooms() {
                      type="checkbox"
                      checked={form.amenities.includes(amenity)}
                      onChange={() => handleAmenityToggle(amenity)}
-                     className="rounded border-gray-300 text-red-600 focus:ring-red-500"
+                     className="rounded border-gray-300 text-sky-600 focus:ring-sky-500"
                    />
                    <span>{amenity}</span>
                  </label>
@@ -450,7 +452,7 @@ export default function ManageRooms() {
               value={form.description}
               onChange={(e) => setForm({ ...form, description: e.target.value })}
               rows={3}
-              className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-400 resize-none"
+              className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400/20 focus:border-sky-400 resize-none"
               placeholder="Room features, bed type, etc."
             />
           </div>
@@ -468,7 +470,7 @@ export default function ManageRooms() {
             <button onClick={() => setDeleteModal({ open: false, room: null })} className="px-4 py-2 border border-gray-300 rounded-lg font-medium hover:bg-gray-50">
               Cancel
             </button>
-            <button onClick={handleDelete} className="px-4 py-2 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700">
+            <button onClick={handleDelete} className="px-4 py-2 bg-sky-500 text-white rounded-lg font-medium border-2 border-sky-500 hover:bg-sky-600">
               Delete
             </button>
           </>
@@ -478,6 +480,9 @@ export default function ManageRooms() {
           Are you sure you want to delete <strong>{deleteModal.room?.roomNumber || 'this room'}</strong>?
         </p>
       </Modal>
+
+      {/* Table Action Buttons with Text and Border */}
+      {/* Update columns actions to include text labels and theme borders */}
     </DashboardLayout>
   )
 }

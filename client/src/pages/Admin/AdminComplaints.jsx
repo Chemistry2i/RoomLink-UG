@@ -104,22 +104,26 @@ export default function AdminComplaints() {
       key: 'actions',
       label: '',
       render: (row) => (
-        <div className="flex items-center gap-1">
-          <button onClick={() => openDetail(row)} className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors" title="View">
-            <MessageSquare size={16} />
+        <div className="flex items-center gap-2">
+          <button onClick={() => openDetail(row)} className="flex items-center gap-1.5 px-3 py-1.5 text-sky-600 hover:bg-sky-50 rounded-lg border-2 border-sky-200 transition-colors text-xs font-semibold" title="View">
+            <MessageSquare size={14} />
+            View
           </button>
           {row.status !== 'resolved' && row.status !== 'closed' && (
             <>
-              <button onClick={() => { setActionModal({ open: true, type: 'resolve', id: row._id }); setActionText('') }} className="p-2 text-gray-400 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors" title="Resolve">
-                <CheckCircle size={16} />
+              <button onClick={() => { setActionModal({ open: true, type: 'resolve', id: row._id }); setActionText('') }} className="flex items-center gap-1.5 px-3 py-1.5 text-green-600 hover:bg-green-50 rounded-lg border-2 border-green-200 transition-colors text-xs font-semibold" title="Resolve">
+                <CheckCircle size={14} />
+                Resolve
               </button>
-              <button onClick={() => { setActionModal({ open: true, type: 'escalate', id: row._id }); setActionText('') }} className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors" title="Escalate">
-                <ArrowUpRight size={16} />
+              <button onClick={() => { setActionModal({ open: true, type: 'escalate', id: row._id }); setActionText('') }} className="flex items-center gap-1.5 px-3 py-1.5 text-sky-600 hover:bg-sky-50 rounded-lg border-2 border-sky-200 transition-colors text-xs font-semibold" title="Escalate">
+                <ArrowUpRight size={14} />
+                Escalate
               </button>
             </>
           )}
-          <button onClick={() => { setActionModal({ open: true, type: 'note', id: row._id }); setActionText('') }} className="p-2 text-gray-400 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition-colors" title="Add Note">
-            <StickyNote size={16} />
+          <button onClick={() => { setActionModal({ open: true, type: 'note', id: row._id }); setActionText('') }} className="flex items-center gap-1.5 px-3 py-1.5 text-purple-600 hover:bg-purple-50 rounded-lg border-2 border-purple-200 transition-colors text-xs font-semibold" title="Add Note">
+            <StickyNote size={14} />
+            Note
           </button>
         </div>
       ),
@@ -141,7 +145,7 @@ export default function AdminComplaints() {
             onClick={() => setStatusFilter(status)}
             className={`px-3 py-1.5 rounded-full text-sm font-medium border transition-colors ${
               statusFilter === status
-                ? 'bg-red-50 border-red-300 text-red-600'
+                ? 'bg-sky-50 border-sky-300 text-sky-600'
                 : 'border-gray-200 text-gray-600 hover:bg-gray-50'
             }`}
           >
@@ -202,7 +206,7 @@ export default function AdminComplaints() {
             <button onClick={() => { setActionModal({ open: false, type: '', id: '' }); setActionText('') }} className="px-4 py-2 border border-gray-300 rounded-lg font-medium hover:bg-gray-50">
               Cancel
             </button>
-            <button onClick={handleAction} disabled={!actionText.trim()} className="px-4 py-2 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 disabled:opacity-50">
+            <button onClick={handleAction} disabled={!actionText.trim()} className="px-4 py-2 bg-sky-500 text-white rounded-lg font-medium border-2 border-sky-500 hover:bg-sky-600 disabled:opacity-50">
               Submit
             </button>
           </>
@@ -212,7 +216,7 @@ export default function AdminComplaints() {
           value={actionText}
           onChange={(e) => setActionText(e.target.value)}
           rows={4}
-          className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-400 resize-none"
+          className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400/20 focus:border-sky-400 resize-none"
           placeholder={
             actionModal.type === 'resolve' ? 'Resolution details...' :
             actionModal.type === 'escalate' ? 'Reason for escalation...' :

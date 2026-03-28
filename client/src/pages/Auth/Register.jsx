@@ -1,12 +1,14 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { User, Mail, Phone, Lock } from 'lucide-react'
+import { User, Mail, Phone, Lock, Eye, EyeOff } from 'lucide-react'
 import api from '../../config/api'
 import toast from 'react-hot-toast'
 
 export default function Register() {
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -71,7 +73,7 @@ export default function Register() {
                 value={formData.name}
                 onChange={handleChange}
                 placeholder="John Doe"
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 outline-none text-gray-900 placeholder-gray-500"
+                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-400 outline-none text-gray-900 placeholder-gray-500"
                 required
               />
             </div>
@@ -88,7 +90,7 @@ export default function Register() {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="your@email.com"
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 outline-none text-gray-900 placeholder-gray-500"
+                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-400 outline-none text-gray-900 placeholder-gray-500"
                 required
               />
             </div>
@@ -105,7 +107,7 @@ export default function Register() {
                 value={formData.phone}
                 onChange={handleChange}
                 placeholder="+1 (555) 000-0000"
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 outline-none text-gray-900 placeholder-gray-500"
+                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-400 outline-none text-gray-900 placeholder-gray-500"
               />
             </div>
           </div>
@@ -117,7 +119,7 @@ export default function Register() {
               name="role"
               value={formData.role}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 outline-none text-gray-900"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-400 outline-none text-gray-900"
             >
               <option value="user">Guest (Looking for a hostel)</option>
               <option value="host">Host (Hostel/Property Owner)</option>
@@ -130,14 +132,21 @@ export default function Register() {
             <div className="relative">
               <Lock size={18} className="absolute left-3 top-3 text-gray-400" />
               <input
-                type="password"
+                type={showPassword ? 'text' : 'password'}
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
                 placeholder="••••••••"
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 outline-none text-gray-900 placeholder-gray-500"
+                className="w-full pl-10 pr-10 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-400 outline-none text-gray-900 placeholder-gray-500"
                 required
               />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-3 text-gray-400 hover:text-gray-600"
+              >
+                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+              </button>
             </div>
           </div>
 
@@ -147,14 +156,21 @@ export default function Register() {
             <div className="relative">
               <Lock size={18} className="absolute left-3 top-3 text-gray-400" />
               <input
-                type="password"
+                type={showConfirmPassword ? 'text' : 'password'}
                 name="confirmPassword"
                 value={formData.confirmPassword}
                 onChange={handleChange}
                 placeholder="••••••••"
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 outline-none text-gray-900 placeholder-gray-500"
+                className="w-full pl-10 pr-10 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-400 outline-none text-gray-900 placeholder-gray-500"
                 required
               />
+              <button
+                type="button"
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                className="absolute right-3 top-3 text-gray-400 hover:text-gray-600"
+              >
+                {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+              </button>
             </div>
           </div>
 
@@ -163,11 +179,11 @@ export default function Register() {
             <input type="checkbox" className="mr-2 mt-1" required />
             <span>
               I agree to the{' '}
-              <Link to="#" className="text-red-500 hover:underline">
+              <Link to="#" className="text-sky-500 hover:underline">
                 Terms of Service
               </Link>{' '}
               and{' '}
-              <Link to="#" className="text-red-500 hover:underline">
+              <Link to="#" className="text-sky-500 hover:underline">
                 Privacy Policy
               </Link>
             </span>
@@ -186,7 +202,7 @@ export default function Register() {
         {/* Sign In Link */}
         <p className="mt-6 text-center text-gray-600">
           Already have an account?{' '}
-          <Link to="/login" className="text-red-500 font-semibold hover:text-red-600">
+          <Link to="/login" className="text-sky-500 font-semibold hover:text-sky-600">
             Sign in
           </Link>
         </p>

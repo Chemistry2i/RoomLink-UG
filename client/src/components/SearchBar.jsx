@@ -80,7 +80,7 @@ export default function SearchBar() {
       {/* Search Button */}
       <button
         type="submit"
-        className="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-full font-semibold flex items-center justify-center gap-2 transition-colors"
+        className="bg-sky-400 hover:bg-sky-500 text-white px-6 py-3 rounded-full font-semibold flex items-center justify-center gap-2 transition-colors"
       >
         <Search size={18} />
         <span className="hidden sm:inline">Search</span>

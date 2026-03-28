@@ -44,7 +44,7 @@ export default function ForgotPassword() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="your@email.com"
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none text-gray-900 placeholder-gray-500"
+                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-400 focus:border-transparent outline-none text-gray-900 placeholder-gray-500"
                   required
                 />
               </div>
@@ -72,7 +72,7 @@ export default function ForgotPassword() {
             </p>
             <p className="text-sm text-gray-500">
               Didn't receive the email? Check your spam folder or{' '}
-              <button onClick={() => setSubmitted(false)} className="text-red-500 hover:underline font-semibold">
+              <button onClick={() => setSubmitted(false)} className="text-sky-500 hover:underline font-semibold">
                 try again
               </button>
             </p>
@@ -81,7 +81,7 @@ export default function ForgotPassword() {
 
         {/* Back to Login */}
         <div className="mt-6 text-center">
-          <Link to="/login" className="inline-flex items-center gap-2 text-red-500 font-semibold hover:text-red-600">
+          <Link to="/login" className="inline-flex items-center gap-2 text-sky-500 font-semibold hover:text-sky-600">
             <ArrowLeft size={16} />
             Back to Login
           </Link>

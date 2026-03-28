@@ -57,10 +57,10 @@ Your RoomLink backend has a **solid foundation** with 51 well-structured control
 **What**: 11 email templates with Airbnb-style professional colors  
 **Improvement**: Flat design, no gradients, modern typography  
 **Colors Used**:
-- Primary Red: #FF5A5F (welcome, reviews)
+- Primary Blue: #87CEEB (welcome, reviews)
 - Success Teal: #00A699 (payments, confirmation)
 - Warning Amber: #FFB800 (cancellations, alerts)
-- Error Red: #E74C3C (password reset)
+- Primary Blue: #87CEEB (password reset)
 - Info Blue: #0073E6 (bookings, host welcome)
 - Text: #222222
 - Background: #FAFAFA
@@ -353,4 +353,3 @@ Your backend is **52% complete** and needs **8 key improvements**:
 **Total effort to production: 4-8 weeks**
 
 **Start with role system + security + email colors this week!**
-

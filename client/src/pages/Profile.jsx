@@ -120,7 +120,7 @@ export default function Profile() {
                   onClick={() => setTab(id)}
                   className={`w-full flex items-center gap-3 px-4 py-3 text-sm font-medium transition-colors ${
                     tab === id
-                      ? 'bg-red-50 text-red-600 border-l-3 border-red-500'
+                      ? 'bg-sky-50 text-sky-600 border-l-4 border-sky-400'
                       : 'text-gray-600 hover:bg-gray-50'
                   }`}
                 >
@@ -146,7 +146,7 @@ export default function Profile() {
                         type="text"
                         value={form.name}
                         onChange={(e) => setForm({ ...form, name: e.target.value })}
-                        className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-400"
+                        className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400/20 focus:border-sky-400"
                         required
                       />
                     </div>
@@ -174,7 +174,7 @@ export default function Profile() {
                         type="tel"
                         value={form.phone}
                         onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                        className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-400"
+                        className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400/20 focus:border-sky-400"
                         placeholder="+256 7XX XXX XXX"
                       />
                     </div>
@@ -182,7 +182,7 @@ export default function Profile() {
 
                   <div className="flex items-center gap-3 pt-2">
                     <span className="text-sm text-gray-500">Role:</span>
-                    <span className="px-3 py-1 bg-red-50 text-red-600 rounded-full text-sm font-semibold capitalize">
+                    <span className="px-3 py-1 bg-sky-50 text-sky-600 rounded-full text-sm font-semibold capitalize">
                       {user?.role}
                     </span>
                   </div>
@@ -218,7 +218,7 @@ export default function Profile() {
                               type={showPasswords[field] ? 'text' : 'password'}
                               value={passwordForm[key]}
                               onChange={(e) => setPasswordForm({ ...passwordForm, [key]: e.target.value })}
-                              className="w-full pr-10 px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-400"
+                              className="w-full pr-10 px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400/20 focus:border-sky-400"
                               required
                             />
                             <button
@@ -244,15 +244,15 @@ export default function Profile() {
                 </div>
 
                 {/* Danger Zone */}
-                <div className="bg-white rounded-xl border border-red-200 shadow-sm p-6">
-                  <h2 className="text-xl font-bold text-red-600 mb-2">Danger Zone</h2>
+                <div className="bg-white rounded-xl border border-sky-200 shadow-sm p-6">
+                  <h2 className="text-xl font-bold text-sky-600 mb-2">Danger Zone</h2>
                   <p className="text-gray-600 text-sm mb-4">
                     Permanently delete your account and all associated data. This action cannot be undone.
                   </p>
                   {!showDeleteConfirm ? (
                     <button
                       onClick={() => setShowDeleteConfirm(true)}
-                      className="flex items-center gap-2 px-5 py-2.5 border border-red-500 text-red-500 rounded-lg font-semibold hover:bg-red-50 transition-colors"
+                      className="flex items-center gap-2 px-5 py-2.5 border-2 border-sky-400 text-sky-500 rounded-lg font-semibold hover:bg-sky-50 transition-colors"
                     >
                       <Trash2 size={18} />
                       Delete Account
@@ -262,7 +262,7 @@ export default function Profile() {
                       <button
                         onClick={handleDeleteAccount}
                         disabled={loading}
-                        className="px-5 py-2.5 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700 transition-colors disabled:opacity-50"
+                        className="px-5 py-2.5 bg-sky-500 text-white rounded-lg font-semibold border-2 border-sky-500 hover:bg-sky-600 transition-colors disabled:opacity-50"
                       >
                         Yes, Delete My Account
                       </button>
@@ -295,7 +295,7 @@ export default function Profile() {
                         type="checkbox"
                         checked={notifPrefs[key]}
                         onChange={() => setNotifPrefs({ ...notifPrefs, [key]: !notifPrefs[key] })}
-                        className="w-5 h-5 rounded border-gray-300 text-red-500 focus:ring-red-500"
+                        className="w-5 h-5 rounded border-gray-300 text-sky-500 focus:ring-sky-500"
                       />
                     </label>
                   ))}

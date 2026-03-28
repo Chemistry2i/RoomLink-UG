@@ -19,7 +19,7 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-red-500 rounded-md flex items-center justify-center">
+            <div className="w-8 h-8 bg-sky-400 rounded-md flex items-center justify-center">
               <span className="text-white font-bold">RL</span>
             </div>
             <span className="font-bold text-xl hidden sm:inline">RoomLink</span>
@@ -39,13 +39,14 @@ export default function Navbar() {
           <div className="flex items-center space-x-4">
             {user ? (
               <div className="hidden sm:flex items-center space-x-4">
-                <Heart size={20} className="cursor-pointer text-gray-700 hover:text-red-500" />
+                <Heart size={20} className="cursor-pointer text-gray-700 hover:text-sky-500" />
                 <MessageCircle size={20} className="cursor-pointer text-gray-700" />
                 <div className="relative group">
                   <button className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
                     <User size={18} />
                   </button>
-                  <div className="hidden group-hover:flex flex-col absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 border border-gray-200">
+                  <div className="hidden group-hover:block absolute right-0 top-full pt-2 w-48 z-50">
+                    <div className="flex flex-col bg-white rounded-lg shadow-lg py-2 border border-gray-200">
                     <Link to={user?.role === 'host' ? '/host/dashboard' : user?.role === 'admin' || user?.role === 'ADMIN' ? '/admin/dashboard' : '/dashboard'} className="px-4 py-2 hover:bg-gray-50 text-sm">
                       Dashboard
                     </Link>
@@ -57,10 +58,11 @@ export default function Navbar() {
                     </Link>
                     <button
                       onClick={handleLogout}
-                      className="px-4 py-2 hover:bg-gray-50 text-sm text-left text-red-500"
+                      className="mx-2 mt-1 px-4 py-1.5 hover:bg-sky-50 text-sm text-left text-sky-600 font-semibold border-2 border-sky-100 rounded-lg transition-colors"
                     >
                       Logout
                     </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -99,7 +101,7 @@ export default function Navbar() {
                 <Link to="/login" className="block px-4 py-2 text-gray-700">
                   Login
                 </Link>
-                <Link to="/register" className="block px-4 py-2 text-red-500 font-semibold">
+                <Link to="/register" className="block px-4 py-2 text-sky-500 font-semibold">
                   Sign up
                 </Link>
               </>
@@ -114,7 +116,7 @@ export default function Navbar() {
                 <Link to="/complaints" className="block px-4 py-2 text-gray-700 hover:bg-gray-50">
                   Complaints
                 </Link>
-                <button onClick={handleLogout} className="block w-full text-left px-4 py-2 text-red-500 hover:bg-gray-50">
+                <button onClick={handleLogout} className="mx-4 mt-2 block w-[calc(100%-2rem)] text-left px-4 py-2 text-sky-600 font-semibold border-2 border-sky-100 rounded-lg hover:bg-sky-50 transition-colors">
                   Logout
                 </button>
               </>
