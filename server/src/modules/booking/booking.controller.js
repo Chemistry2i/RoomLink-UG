@@ -16,6 +16,7 @@ const PDFDocument = require('pdfkit');
  * Body: room, checkInDate, checkOutDate, numberOfGuests, guestDetails, payment, specialRequests
  */
 const createBooking = asyncHandler(async (req, res) => {
+  console.log('DEBUG: Incoming booking request body:', req.body);
   const {
     hostel,
     room,
@@ -65,16 +66,16 @@ const createBooking = asyncHandler(async (req, res) => {
   }
 
   // Calculate pricing
-  const nights = Math.ceil((checkOut - checkIn) / (1000 * 60 * 60 * 24));
+  const semsters = Math.ceil((checkOut - checkIn) / (1000 * 60 * 60 * 24));
   let discountApplied = 0;
 
-  if (nights >= 30 && roomData.monthlyDiscount > 0) {
+  if (semsters >= 30 && roomData.monthlyDiscount > 0) {
     discountApplied = roomData.monthlyDiscount;
-  } else if (nights >= 7 && roomData.weeklyDiscount > 0) {
+  } else if (semsters >= 7 && roomData.weeklyDiscount > 0) {
     discountApplied = roomData.weeklyDiscount;
   }
 
-  const subtotal = roomData.pricePerNight * nights * numberOfRooms;
+  const subtotal = roomData.pricePersemster * semsters * numberOfRooms;
   const discountAmount = (subtotal * discountApplied) / 100;
   const netAmount = subtotal - discountAmount;
   const serviceFee = netAmount * 0.05; // 5% service fee
@@ -89,16 +90,19 @@ const createBooking = asyncHandler(async (req, res) => {
     createdAt: new Date(),
   });
 
-  await booking.populate("user", "name email").populate("hostel", "name");
+  // Populate user and hostel fields
+  const populatedBooking = await Booking.findById(booking._id)
+    .populate("user", "name email")
+    .populate("hostel", "name");
 
   // Emit real-time event for new booking (admin/host dashboards)
   if (global.io) {
-    global.io.to("admin").emit("newBooking", booking);
-    global.io.to("host").emit("newBooking", booking);
+    global.io.to("admin").emit("newBooking", populatedBooking);
+    global.io.to("host").emit("newBooking", populatedBooking);
   }
 
   return res.status(201).json(
-    new ApiResponse(201, booking, "Booking created successfully")
+    new ApiResponse(201, populatedBooking, "Booking created successfully")
   );
 });
 

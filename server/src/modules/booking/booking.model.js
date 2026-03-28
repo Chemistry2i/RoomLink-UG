@@ -75,13 +75,13 @@ const bookingSchema = new mongoose.Schema(
     },
 
     pricing: {
-      pricePerNight: {
+      pricePersemster: {
         type: Number,
-        required: [true, "Price per night is required"],
+        required: [true, "Price per semster is required"],
       },
-      numberOfNights: {
+      numberOfsemsters: {
         type: Number,
-        required: [true, "Number of nights is required"],
+        required: [true, "Number of semsters is required"],
       },
       subtotal: {
         type: Number,

@@ -47,6 +47,7 @@ export default function Payment() {
       method,
       phone: method === 'mpesa' ? phone : undefined,
       amount: booking.totalPrice,
+      description: `Room booking for ${booking?.hostel?.name || 'Hostel'} (${booking?.room?.roomNumber || ''})`,
     })
 
     if (result) {
@@ -155,7 +156,7 @@ export default function Payment() {
                 <div className="border-t border-gray-100 pt-2 mt-2 flex justify-between">
                   <span className="font-semibold">Total Amount</span>
                   <span className="text-xl font-bold text-red-600">
-                    ${booking?.totalPrice?.toLocaleString() || 0}
+                    UGX {booking?.totalPrice?.toLocaleString() || 0}
                   </span>
                 </div>
               </div>
@@ -221,7 +222,7 @@ export default function Payment() {
               disabled={loading || (method === 'mpesa' && !phone) || method === 'card'}
               className="w-full btn-primary py-3 text-lg font-bold disabled:opacity-50"
             >
-              {loading ? 'Processing...' : `Pay $${booking?.totalPrice?.toLocaleString() || 0}`}
+              {loading ? 'Processing...' : `Pay UGX ${booking?.totalPrice?.toLocaleString() || 0}`}
             </button>
           </>
         )}

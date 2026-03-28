@@ -40,7 +40,7 @@ const sendBookingConfirmation = async (bookingId) => {
       day: "numeric",
     });
 
-    const nights = Math.ceil(
+    const semsters = Math.ceil(
       (new Date(booking.checkOutDate) - new Date(booking.checkInDate)) /
         (1000 * 60 * 60 * 24)
     );
@@ -56,10 +56,10 @@ const sendBookingConfirmation = async (bookingId) => {
         roomNumber: booking.room.roomNumber,
         checkInDate: checkInDate,
         checkOutDate: checkOutDate,
-        numberOfNights: nights,
+        numberOfsemsters: semsters,
         numberOfGuests: booking.numberOfGuests,
         totalPrice: `UGX ${booking.pricing.totalPrice.toLocaleString()}`,
-        pricePerNight: `UGX ${booking.pricing.pricePerNight.toLocaleString()}`,
+        pricePersemster: `UGX ${booking.pricing.pricePersemster.toLocaleString()}`,
         hostelAddress: `${booking.hostel.address.street}, ${booking.hostel.address.city}`,
         hostelPhone: booking.hostel.contactEmail,
         guestPhone: booking.guestDetails.phone,

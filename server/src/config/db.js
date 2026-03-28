@@ -1,26 +1,20 @@
 const mongoose = require("mongoose");
 const logger = require("./logger");
-
+const { config } = require("./env");
 /**
  * Connect to MongoDB Atlas
  * Handles connection pooling and error scenarios
  */
 const connectDB = async () => {
   try {
-    const mongoURI = process.env.MONGO_URI;
-
-    if (!mongoURI) {
-      throw new Error("MONGO_URI environment variable is not defined");
-    }
+    const mongoURI = config.database.mongoURI;
 
     const conn = await mongoose.connect(mongoURI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
       maxPoolSize: 10,
       serverSelectionTimeoutMS: 5000,
     });
 
-    logger.info(`✅ MongoDB Connected: ${conn.connection.host}`);
+    logger.info(`MongoDB Connected: ${conn.connection.host}`);
 
     // Handle connection events
     mongoose.connection.on("disconnected", () => {

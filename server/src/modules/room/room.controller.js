@@ -8,10 +8,16 @@ const uploadService = require("../../services/uploadService");
 /**
  * CREATE - Add new room to a hostel
  * POST /api/v1/rooms
- * Body: hostel, roomNumber, roomType, capacity, bedConfiguration, pricePerNight, amenities, totalRooms, availableRooms
+ * Body: hostel, roomNumber, roomType, capacity, bedConfiguration, pricePersemster, amenities, totalRooms, availableRooms
  * Files: images (max 10)
  */
 const createRoom = asyncHandler(async (req, res) => {
+  console.log('DEBUG: Incoming createRoom request body:', req.body);
+  if (req.files) {
+    console.log('DEBUG: Incoming files:', Object.keys(req.files));
+  }
+
+  // Extract and sanitize input
   const {
     hostel,
     roomNumber,
@@ -19,38 +25,44 @@ const createRoom = asyncHandler(async (req, res) => {
     capacity,
     bedConfiguration,
     totalBeds,
-    pricePerNight,
+    pricePerSemester,
     weeklyDiscount,
     monthlyDiscount,
     amenities,
-    totalRooms,
-    availableRooms,
+    totalRooms: totalRoomsRaw = 1,
+    availableRooms: availableRoomsRaw = 1,
     description,
     floor,
     viewType,
   } = req.body;
 
-  // Validate required fields
-  if (
-    !hostel ||
-    !roomNumber ||
-    !roomType ||
-    !capacity ||
-    !bedConfiguration ||
-    !totalBeds ||
-    typeof pricePerNight === "undefined" ||
-    !totalRooms ||
-    typeof availableRooms === "undefined"
-  ) {
-    throw new ApiError(400, "Missing required fields");
+  // Convert to integers and validate
+  const totalRooms = parseInt(totalRoomsRaw, 10);
+  const availableRooms = parseInt(availableRoomsRaw, 10);
+  console.log('DEBUG: Parsed totalRooms:', totalRooms, 'availableRooms:', availableRooms);
+
+
+  // Validate required fields and types
+  if (!hostel || !roomNumber || !roomType || !capacity || !bedConfiguration || !totalBeds || typeof pricePerSemester === "undefined") {
+    console.log('DEBUG: Validation failed. hostel:', hostel, 'roomNumber:', roomNumber, 'roomType:', roomType, 'capacity:', capacity, 'bedConfiguration:', bedConfiguration, 'totalBeds:', totalBeds, 'pricePerSemester:', pricePerSemester);
+    throw new ApiError(400, "Missing required fields: hostel, roomNumber, roomType, capacity, bedConfiguration, totalBeds, pricePerSemester");
   }
+  if (!Number.isInteger(totalRooms) || totalRooms < 1) {
+    throw new ApiError(400, "totalRooms must be a positive integer");
+  }
+  if (!Number.isInteger(availableRooms) || availableRooms < 0) {
+    throw new ApiError(400, "availableRooms must be a non-negative integer");
+  }
+  if (availableRooms > totalRooms) {
+    throw new ApiError(400, "availableRooms cannot exceed totalRooms");
+  }
+
 
   // Check if hostel exists and belongs to current user or user is admin
   const hostelDoc = await Hostel.findById(hostel);
   if (!hostelDoc) {
     throw new ApiError(404, "Hostel not found");
   }
-
   if (
     hostelDoc.owner.toString() !== req.user._id.toString() &&
     req.user.role !== "ADMIN" &&
@@ -59,19 +71,20 @@ const createRoom = asyncHandler(async (req, res) => {
     throw new ApiError(403, "Not authorized to add rooms to this hostel");
   }
 
-  // Check if room number already exists in this hostel
+
+  // Enforce unique room number per hostel
   const existingRoom = await Room.findOne({ hostel, roomNumber });
   if (existingRoom) {
     throw new ApiError(400, "Room number already exists in this hostel");
   }
 
-  // Handle image uploads
+
+  // Handle image uploads (max 10)
   const images = [];
   if (req.files && req.files.images) {
     const imageFiles = Array.isArray(req.files.images)
       ? req.files.images
       : [req.files.images];
-
     for (const file of imageFiles.slice(0, 10)) {
       const uploadedData = await uploadService.uploadFile(file.path, "rooms");
       images.push({
@@ -81,7 +94,8 @@ const createRoom = asyncHandler(async (req, res) => {
     }
   }
 
-  // Create room
+
+  // Create room with all validated and normalized fields
   const room = await Room.create({
     hostel,
     roomNumber,
@@ -89,7 +103,7 @@ const createRoom = asyncHandler(async (req, res) => {
     capacity,
     bedConfiguration,
     totalBeds,
-    pricePerNight,
+    pricePerSemester,
     weeklyDiscount: weeklyDiscount || 0,
     monthlyDiscount: monthlyDiscount || 0,
     amenities: amenities || [],
@@ -103,6 +117,7 @@ const createRoom = asyncHandler(async (req, res) => {
   });
 
   await room.populate("hostel", "name");
+  console.log('DEBUG: Room created:', room);
 
   // Emit real-time event for new room (admin/host dashboards)
   if (global.io) {
@@ -110,8 +125,13 @@ const createRoom = asyncHandler(async (req, res) => {
     global.io.to("host").emit("newRoom", room);
   }
 
+  // Professional, clear response with all key details
   return res.status(201).json(
-    new ApiResponse(201, room, "Room created successfully")
+    new ApiResponse(201, {
+      ...room.toObject(),
+      totalRooms: room.totalRooms,
+      availableRooms: room.availableRooms,
+    }, "Room created successfully")
   );
 });
 
@@ -142,9 +162,9 @@ const getRooms = asyncHandler(async (req, res) => {
   if (roomType) filter.roomType = roomType;
   if (capacity) filter.capacity = { $gte: parseInt(capacity) };
   if (minPrice || maxPrice) {
-    filter.pricePerNight = {};
-    if (minPrice) filter.pricePerNight.$gte = parseFloat(minPrice);
-    if (maxPrice) filter.pricePerNight.$lte = parseFloat(maxPrice);
+    filter.pricePersemster = {};
+    if (minPrice) filter.pricePersemster.$gte = parseFloat(minPrice);
+    if (maxPrice) filter.pricePersemster.$lte = parseFloat(maxPrice);
   }
   if (amenities) {
     const amenitiesArr = Array.isArray(amenities) ? amenities : amenities.split(",");
@@ -217,7 +237,7 @@ const getRoomById = asyncHandler(async (req, res) => {
 /**
  * UPDATE - Update room details
  * PUT /api/v1/rooms/:id
- * Body: roomNumber, roomType, capacity, pricePerNight, amenities, etc.
+ * Body: roomNumber, roomType, capacity, pricePersemster, amenities, etc.
  */
 const updateRoom = asyncHandler(async (req, res) => {
   const { id } = req.params;
@@ -243,7 +263,7 @@ const updateRoom = asyncHandler(async (req, res) => {
     capacity,
     bedConfiguration,
     totalBeds,
-    pricePerNight,
+    pricePersemster,
     weeklyDiscount,
     monthlyDiscount,
     amenities,
@@ -261,7 +281,7 @@ const updateRoom = asyncHandler(async (req, res) => {
   if (capacity) room.capacity = capacity;
   if (bedConfiguration) room.bedConfiguration = bedConfiguration;
   if (totalBeds) room.totalBeds = totalBeds;
-  if (typeof pricePerNight !== "undefined") room.pricePerNight = pricePerNight;
+  if (typeof pricePersemster !== "undefined") room.pricePersemster = pricePersemster;
   if (typeof weeklyDiscount !== "undefined") room.weeklyDiscount = weeklyDiscount;
   if (typeof monthlyDiscount !== "undefined") room.monthlyDiscount = monthlyDiscount;
   if (amenities) room.amenities = amenities;
@@ -372,16 +392,16 @@ const checkAvailability = asyncHandler(async (req, res) => {
   });
 
   const availableCount = room.totalRooms - bookings;
-  const nights = Math.ceil((checkOut - checkIn) / (1000 * 60 * 60 * 24));
+  const semsters = Math.ceil((checkOut - checkIn) / (1000 * 60 * 60 * 24));
   
   let discountApplied = 0;
-  if (nights >= 30 && room.monthlyDiscount > 0) {
+  if (semsters >= 30 && room.monthlyDiscount > 0) {
     discountApplied = room.monthlyDiscount;
-  } else if (nights >= 7 && room.weeklyDiscount > 0) {
+  } else if (semsters >= 7 && room.weeklyDiscount > 0) {
     discountApplied = room.weeklyDiscount;
   }
 
-  const totalPrice = room.pricePerNight * nights * (1 - discountApplied / 100);
+  const totalPrice = room.pricePersemster * semsters * (1 - discountApplied / 100);
 
   const availability = {
     roomId: room._id,
@@ -389,11 +409,11 @@ const checkAvailability = asyncHandler(async (req, res) => {
     roomType: room.roomType,
     checkInDate: checkInDate,
     checkOutDate: checkOutDate,
-    nights,
+    semsters,
     available: availableCount > 0,
     availableCount,
     totalRooms: room.totalRooms,
-    pricePerNight: room.pricePerNight,
+    pricePersemster: room.pricePersemster,
     discountApplied,
     totalPrice,
   };

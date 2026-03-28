@@ -39,9 +39,9 @@ const roomSchema = new mongoose.Schema(
       min: [1, "Must have at least 1 bed"],
     },
 
-    pricePerNight: {
+    pricePerSemester: {
       type: Number,
-      required: [true, "Price per night is required"],
+      required: [true, "Price per semester is required"],
       min: [0, "Price cannot be negative"],
     },
 
@@ -168,21 +168,21 @@ roomSchema.index({ hostel: 1, roomNumber: 1 }, { unique: true });
 // Indexes for queries
 roomSchema.index({ hostel: 1 });
 roomSchema.index({ roomType: 1 });
-roomSchema.index({ pricePerNight: 1 });
+roomSchema.index({ pricePerSemester: 1 });
 roomSchema.index({ averageRating: -1 });
 roomSchema.index({ accountStatus: 1 });
 roomSchema.index({ capacity: 1 });
 roomSchema.index({ createdAt: -1 });
 
 // Virtual for calculated price with discount
-roomSchema.virtual("calculatedPrice").get(function (nights = 1) {
+roomSchema.virtual("calculatedPrice").get(function (semsters = 1) {
   let discount = 0;
-  if (nights >= 30 && this.monthlyDiscount > 0) {
+  if (semsters >= 30 && this.monthlyDiscount > 0) {
     discount = this.monthlyDiscount;
-  } else if (nights >= 7 && this.weeklyDiscount > 0) {
+  } else if (semsters >= 7 && this.weeklyDiscount > 0) {
     discount = this.weeklyDiscount;
   }
-  return this.pricePerNight * nights * (1 - discount / 100);
+  return this.pricePersemster * semsters * (1 - discount / 100);
 });
 
 module.exports = mongoose.model("Room", roomSchema);

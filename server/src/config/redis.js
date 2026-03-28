@@ -1,11 +1,12 @@
 const redis = require("redis");
 const logger = require("./logger");
+const { config } = require("./env");
 
 // Build Redis connection URL for redis v4+
-const redisHost = process.env.REDIS_HOST || "localhost";
-const redisPort = process.env.REDIS_PORT || 6379;
-const redisPassword = process.env.REDIS_PASSWORD;
-const redisDb = process.env.REDIS_DB || 0;
+const redisHost = config.redis.host;
+const redisPort = config.redis.port;
+const redisPassword = config.redis.password;
+const redisDb = config.redis.db;
 
 let redisUrl;
 if (redisPassword) {

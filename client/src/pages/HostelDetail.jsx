@@ -151,8 +151,8 @@ export default function HostelDetail() {
                       </div>
                       <div className="text-right">
                         <div className="text-3xl font-bold mb-3">
-                          ${room.pricePerNight}
-                          <span className="text-base text-gray-600">/night</span>
+                          UGX {room.pricePerSemester?.toLocaleString()}
+                          <span className="text-base text-gray-600">/semester</span>
                         </div>
                         <button
                           onClick={() => navigate(`/booking/${room._id}`)}
@@ -187,10 +187,10 @@ export default function HostelDetail() {
           <div>
             <div className="card p-6 sticky top-20">
               <div className="mb-6">
-                <p className="text-gray-600 text-sm mb-2">Price per night</p>
+                <p className="text-gray-600 text-sm mb-2">Price per semester</p>
                 <p className="text-4xl font-bold">
-                  ${hostel.minPrice || 'Contact'}
-                  <span className="text-lg text-gray-600">/night</span>
+                  UGX {hostel.minPrice?.toLocaleString() || 'Contact'}
+                  <span className="text-lg text-gray-600">/semester</span>
                 </p>
               </div>
 

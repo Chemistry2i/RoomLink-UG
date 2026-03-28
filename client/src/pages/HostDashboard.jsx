@@ -83,7 +83,7 @@ export default function HostDashboard() {
       {/* Stats Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         <StatsCard title="My Hostels" value={totalHostels} icon={Building2} color="blue" />
-        <StatsCard title="Total Revenue" value={totalRevenue} icon={DollarSign} color="green" prefix="$" />
+        <StatsCard title="Total Revenue" value={totalRevenue} icon={DollarSign} color="green" prefix="UGX " />
         <StatsCard title="Total Bookings" value={totalBookings} icon={Users} color="purple" />
         <StatsCard title="Avg Rating" value={`${avgRating} (${totalReviews})`} icon={Star} color="yellow" />
       </div>

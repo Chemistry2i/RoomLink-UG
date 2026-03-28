@@ -115,7 +115,7 @@ const getBookings = async (filters = {}, pagination = {}) => {
     }
 
     const bookings = await Booking.find(query)
-      .populate("room", "roomNumber roomType pricePerNight")
+      .populate("room", "roomNumber roomType pricePersemster")
       .populate("guest", "name email phone")
       .skip(skip)
       .limit(limit)
@@ -144,7 +144,7 @@ const getBookings = async (filters = {}, pagination = {}) => {
 const getBookingById = async (bookingId) => {
   try {
     const booking = await Booking.findById(bookingId)
-      .populate("room", "roomNumber roomType pricePerNight amenities")
+      .populate("room", "roomNumber roomType pricePersemster amenities")
       .populate("hostel", "name address phone email")
       .populate("guest", "name email phone");
 
@@ -211,7 +211,7 @@ const getUserBookings = async (userId, pagination = {}) => {
     const skip = (page - 1) * limit;
 
     const bookings = await Booking.find({ guest: userId })
-      .populate("room", "roomNumber roomType pricePerNight")
+      .populate("room", "roomNumber roomType pricePersemster")
       .populate("hostel", "name address")
       .skip(skip)
       .limit(limit)
@@ -255,7 +255,7 @@ const updateBooking = async (bookingId, updates) => {
       bookingId,
       filteredUpdates,
       { new: true, runValidators: true }
-    ).populate("room", "roomNumber roomType pricePerNight");
+    ).populate("room", "roomNumber roomType pricePersemster");
 
     logger.info(`Booking updated: ${bookingId}`);
     return updatedBooking;

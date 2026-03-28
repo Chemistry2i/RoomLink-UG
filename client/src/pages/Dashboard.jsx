@@ -49,7 +49,7 @@ export default function Dashboard() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <StatsCard title="Total Bookings" value={bookings.length} icon={Bookmark} color="blue" />
         <StatsCard title="Active Bookings" value={activeBookings} icon={Calendar} color="green" />
-        <StatsCard title="Total Spent" value={totalSpent} icon={MapPin} color="purple" prefix="$" />
+        <StatsCard title="Total Spent" value={totalSpent} icon={MapPin} color="purple" prefix="UGX " />
       </div>
 
       {/* Bookings */}
@@ -104,7 +104,7 @@ export default function Dashboard() {
                   <div className="text-right">
                     <p className="text-gray-500 text-xs font-semibold mb-1">Total Cost</p>
                     <p className="text-xl font-bold text-red-500">
-                      ${booking.totalPrice || 0}
+                      UGX {booking.totalPrice?.toLocaleString() || 0}
                     </p>
                   </div>
                 </div>

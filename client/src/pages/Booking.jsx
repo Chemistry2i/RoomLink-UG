@@ -1,4 +1,9 @@
 import { useState, useEffect } from 'react'
+import MpesaIcon from '../assets/payment/mpesa.svg';
+import CreditCardIcon from '../assets/payment/credit-card.svg';
+import DebitCardIcon from '../assets/payment/debit-card.svg';
+import BankTransferIcon from '../assets/payment/bank-transfer.svg';
+import CashIcon from '../assets/payment/cash.svg';
 import { useParams, useNavigate } from 'react-router-dom'
 import { ArrowLeft, Lock } from 'lucide-react'
 import api from '../config/api'
@@ -16,6 +21,7 @@ export default function Booking() {
     checkOutDate: '',
     guestCount: 1,
     specialRequests: '',
+    paymentMethod: 'M-Pesa',
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
 
@@ -45,7 +51,7 @@ export default function Booking() {
       (new Date(bookingData.checkOutDate) - new Date(bookingData.checkInDate)) /
         (1000 * 60 * 60 * 24)
     )
-    return nights * room.pricePerNight
+    return nights * room.pricePerSemester
   }
 
   const handleSubmit = async (e) => {
@@ -53,10 +59,42 @@ export default function Booking() {
     setIsSubmitting(true)
 
     try {
-      const { data } = await api.post('/bookings', {
-        ...bookingData,
-        roomId,
-      })
+      // Calculate number of nights (or semesters if logic changes)
+      const nights = bookingData.checkInDate && bookingData.checkOutDate
+        ? Math.ceil((new Date(bookingData.checkOutDate) - new Date(bookingData.checkInDate)) / (1000 * 60 * 60 * 24))
+        : 1;
+      // Split user name for first/last name
+      const [firstName = '', ...rest] = (user?.name || '').split(' ');
+      const lastName = rest.join(' ');
+      // Generate a simple booking reference (for demo; backend should ideally do this)
+      const bookingReference = 'BK' + Math.random().toString(36).substring(2, 10).toUpperCase();
+      const subtotal = totalCost;
+      const serviceFee = Math.round(totalCost * 0.1);
+      const totalPrice = subtotal + serviceFee;
+      const payload = {
+        room: roomId,
+        hostel: room?.hostel?._id || room?.hostel || '',
+        checkInDate: bookingData.checkInDate,
+        checkOutDate: bookingData.checkOutDate,
+        numberOfGuests: bookingData.guestCount,
+        specialRequests: bookingData.specialRequests,
+        payment: { method: bookingData.paymentMethod },
+        pricing: {
+          subtotal,
+          totalPrice,
+          numberOfsemsters: 1, // Adjust as needed
+          pricePersemster: room?.pricePerSemester || 0
+        },
+        guestDetails: {
+          firstName,
+          lastName,
+          email: user?.email,
+          phone: user?.phone || 'N/A',
+        },
+        bookingReference,
+      };
+      console.log('DEBUG: Booking payload:', payload);
+      const { data } = await api.post('/bookings', payload);
       toast.success('Booking created! Proceeding to payment...')
       const bookingResult = data.data
       navigate(`/payment/${bookingResult._id || bookingResult.bookingId}`)
@@ -98,6 +136,77 @@ export default function Booking() {
               <h1 className="text-3xl font-bold mb-8">Confirm Your Booking</h1>
 
               <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Payment Method */}
+                <div>
+                  <label className="block text-sm font-semibold mb-2">Payment Method</label>
+                  <div className="flex flex-wrap gap-4">
+                    <label className={`flex items-center gap-2 border rounded-lg px-3 py-2 cursor-pointer ${bookingData.paymentMethod === 'M-Pesa' ? 'ring-2 ring-red-500' : 'border-gray-300'}`}>
+                      <img src={MpesaIcon} alt="M-Pesa" className="w-8 h-8" />
+                      <span className="font-medium">M-Pesa</span>
+                      <input
+                        type="radio"
+                        name="paymentMethod"
+                        value="M-Pesa"
+                        checked={bookingData.paymentMethod === 'M-Pesa'}
+                        onChange={e => setBookingData({ ...bookingData, paymentMethod: e.target.value })}
+                        className="hidden"
+                        required
+                      />
+                    </label>
+                    <label className={`flex items-center gap-2 border rounded-lg px-3 py-2 cursor-pointer ${bookingData.paymentMethod === 'Credit Card' ? 'ring-2 ring-red-500' : 'border-gray-300'}`}>
+                      <img src={CreditCardIcon} alt="Credit Card" className="w-8 h-8" />
+                      <span className="font-medium">Credit Card</span>
+                      <input
+                        type="radio"
+                        name="paymentMethod"
+                        value="Credit Card"
+                        checked={bookingData.paymentMethod === 'Credit Card'}
+                        onChange={e => setBookingData({ ...bookingData, paymentMethod: e.target.value })}
+                        className="hidden"
+                        required
+                      />
+                    </label>
+                    <label className={`flex items-center gap-2 border rounded-lg px-3 py-2 cursor-pointer ${bookingData.paymentMethod === 'Debit Card' ? 'ring-2 ring-red-500' : 'border-gray-300'}`}>
+                      <img src={DebitCardIcon} alt="Debit Card" className="w-8 h-8" />
+                      <span className="font-medium">Debit Card</span>
+                      <input
+                        type="radio"
+                        name="paymentMethod"
+                        value="Debit Card"
+                        checked={bookingData.paymentMethod === 'Debit Card'}
+                        onChange={e => setBookingData({ ...bookingData, paymentMethod: e.target.value })}
+                        className="hidden"
+                        required
+                      />
+                    </label>
+                    <label className={`flex items-center gap-2 border rounded-lg px-3 py-2 cursor-pointer ${bookingData.paymentMethod === 'Bank Transfer' ? 'ring-2 ring-red-500' : 'border-gray-300'}`}>
+                      <img src={BankTransferIcon} alt="Bank Transfer" className="w-8 h-8" />
+                      <span className="font-medium">Bank Transfer</span>
+                      <input
+                        type="radio"
+                        name="paymentMethod"
+                        value="Bank Transfer"
+                        checked={bookingData.paymentMethod === 'Bank Transfer'}
+                        onChange={e => setBookingData({ ...bookingData, paymentMethod: e.target.value })}
+                        className="hidden"
+                        required
+                      />
+                    </label>
+                    <label className={`flex items-center gap-2 border rounded-lg px-3 py-2 cursor-pointer ${bookingData.paymentMethod === 'Cash' ? 'ring-2 ring-red-500' : 'border-gray-300'}`}>
+                      <img src={CashIcon} alt="Cash" className="w-8 h-8" />
+                      <span className="font-medium">Cash</span>
+                      <input
+                        type="radio"
+                        name="paymentMethod"
+                        value="Cash"
+                        checked={bookingData.paymentMethod === 'Cash'}
+                        onChange={e => setBookingData({ ...bookingData, paymentMethod: e.target.value })}
+                        className="hidden"
+                        required
+                      />
+                    </label>
+                  </div>
+                </div>
                 {/* Guest Info */}
                 <div>
                   <h3 className="text-lg font-bold mb-4">Guest Information</h3>
@@ -199,7 +308,7 @@ export default function Booking() {
                 <div className="space-y-4 pb-4 border-b border-gray-200">
                   <div>
                     <p className="text-gray-600 text-sm">{room.roomType}</p>
-                    <p className="font-semibold">${room.pricePerNight}/night</p>
+                    <p className="font-semibold">UGX {room.pricePerSemester?.toLocaleString()}/semester</p>
                   </div>
                 </div>
               )}
@@ -226,15 +335,15 @@ export default function Booking() {
               <div className="pt-4 border-t border-gray-200">
                 <div className="flex justify-between mb-2">
                   <span className="text-gray-600">Subtotal</span>
-                  <span className="font-semibold">${totalCost}</span>
+                  <span className="font-semibold">UGX {totalCost?.toLocaleString()}</span>
                 </div>
                 <div className="flex justify-between mb-4">
                   <span className="text-gray-600">Service Fee (10%)</span>
-                  <span className="font-semibold">${Math.round(totalCost * 0.1)}</span>
+                  <span className="font-semibold">UGX {Math.round(totalCost * 0.1).toLocaleString()}</span>
                 </div>
                 <div className="flex justify-between text-lg font-bold">
                   <span>Total</span>
-                  <span>${totalCost + Math.round(totalCost * 0.1)}</span>
+                  <span>UGX {(totalCost + Math.round(totalCost * 0.1)).toLocaleString()}</span>
                 </div>
               </div>
             </div>

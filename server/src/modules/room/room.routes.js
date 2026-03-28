@@ -21,19 +21,25 @@ router.get("/:id", roomController.getRoomById);
 router.get("/:id/availability", roomController.checkAvailability);
 
 // Protected routes
+
 router.post(
   "/",
   authenticate,
   authorize("HOST", "ADMIN", "SUPER_ADMIN"),
-  upload.single("images"),
+  upload.fields([
+    { name: "images", maxCount: 10 }
+  ]),
   roomController.createRoom
 );
+
 
 router.put(
   "/:id",
   authenticate,
   authorize("HOST", "ADMIN", "SUPER_ADMIN"),
-  upload.single("images"),
+  upload.fields([
+    { name: "images", maxCount: 10 }
+  ]),
   roomController.updateRoom
 );
 

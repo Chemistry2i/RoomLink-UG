@@ -39,7 +39,7 @@ const checkRoomAvailability = async (roomId, checkInDate, checkOutDate) => {
       isAvailable,
       occupiedBeds,
       availableBeds: room.capacity - occupiedBeds,
-      pricePerNight: room.pricePerNight,
+      pricePersemster: room.pricePersemster,
     };
   } catch (error) {
     logger.error(`Error checking room availability: ${error.message}`);
@@ -59,17 +59,17 @@ const calculateRoomPrice = async (roomId, checkInDate, checkOutDate) => {
 
     const checkIn = new Date(checkInDate);
     const checkOut = new Date(checkOutDate);
-    const nights = Math.ceil((checkOut - checkIn) / (1000 * 60 * 60 * 24));
+    const semsters = Math.ceil((checkOut - checkIn) / (1000 * 60 * 60 * 24));
 
-    let basePrice = room.pricePerNight * nights;
+    let basePrice = room.pricePersemster * semsters;
     let discount = 0;
     let appliedDiscount = "none";
 
     // Apply discounts based on stay length
-    if (nights >= 30) {
+    if (semsters >= 30) {
       discount = (basePrice * room.monthlyDiscount) / 100;
       appliedDiscount = "monthly";
-    } else if (nights >= 7) {
+    } else if (semsters >= 7) {
       discount = (basePrice * room.weeklyDiscount) / 100;
       appliedDiscount = "weekly";
     }
@@ -77,8 +77,8 @@ const calculateRoomPrice = async (roomId, checkInDate, checkOutDate) => {
     const totalPrice = basePrice - discount;
 
     return {
-      pricePerNight: room.pricePerNight,
-      nights,
+      pricePersemster: room.pricePersemster,
+      semsters,
       basePrice,
       discount,
       discountType: appliedDiscount,
@@ -104,7 +104,7 @@ const getAvailableRooms = async (hostelId, checkInDate, checkOutDate) => {
     // Get all active rooms in hostel
     const rooms = await Room.find({
       hostel: hostelId,
-      isActive: true,
+      accountStatus: "Active",
     });
 
     const availableRoomsData = [];
@@ -184,11 +184,11 @@ const getRoomOccupancyRate = async (roomId, startDate, endDate) => {
 
     let occupiedBedsCount = 0;
     bookings.forEach((booking) => {
-      const nights = Math.ceil(
+      const semsters = Math.ceil(
         (new Date(booking.checkOutDate) - new Date(booking.checkInDate)) /
           (1000 * 60 * 60 * 24)
       );
-      occupiedBedsCount += nights * (booking.guestCount || 1);
+      occupiedBedsCount += semsters * (booking.guestCount || 1);
     });
 
     const occupancyRate = (occupiedBedsCount / totalCapacityDays) * 100;
@@ -213,7 +213,7 @@ const getLowAvailabilityRooms = async (hostelId, threshold = 2) => {
     const rooms = await Room.find({
       hostel: hostelId,
       availableRooms: { $lte: threshold },
-      isActive: true,
+      accountStatus: "Active",
     });
 
     return rooms;

@@ -83,7 +83,7 @@ export default function Search() {
                     />
                   </div>
                   <div className="text-sm text-gray-600">
-                    ${filters.priceMin} - ${filters.priceMax}
+                    UGX {filters.priceMin?.toLocaleString()} - UGX {filters.priceMax?.toLocaleString()}
                   </div>
                 </div>
               </div>

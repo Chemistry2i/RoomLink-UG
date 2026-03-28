@@ -18,7 +18,7 @@ The RoomLink notification system automatically sends transactional emails to gue
 - Room type & room number
 - Check-in/Check-out dates  
 - Number of guests
-- Nightly rate & discounts applied
+- semsterly rate & discounts applied
 - Total price breakdown
 - Check-in/Check-out times
 - Hostel contact info
@@ -124,7 +124,7 @@ notificationService.sendCheckOutReminder(bookingId)
 **Sent Information:**
 - Hostel name
 - Room type
-- Stay duration (number of nights)
+- Stay duration (number of semsters)
 - Check-out date
 - Direct link to leave review
 - Hostel image

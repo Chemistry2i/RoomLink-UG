@@ -123,9 +123,9 @@ const getHostels = asyncHandler(async (req, res) => {
   if (owner) filter.owner = owner;
   if (minRating) filter.averageRating = { $gte: parseFloat(minRating) };
   if (minPrice || maxPrice) {
-    filter.pricePerNight = {};
-    if (minPrice) filter.pricePerNight.$gte = parseFloat(minPrice);
-    if (maxPrice) filter.pricePerNight.$lte = parseFloat(maxPrice);
+    filter.pricePersemster = {};
+    if (minPrice) filter.pricePersemster.$gte = parseFloat(minPrice);
+    if (maxPrice) filter.pricePersemster.$lte = parseFloat(maxPrice);
   }
   if (amenities) {
     const amenitiesArr = Array.isArray(amenities) ? amenities : amenities.split(",");

@@ -315,7 +315,7 @@ const generateInvoice = async (paymentId) => {
         path: "booking",
         populate: {
           path: "room",
-          select: "roomNumber roomType pricePerNight",
+          select: "roomNumber roomType pricePersemster",
         },
       });
 

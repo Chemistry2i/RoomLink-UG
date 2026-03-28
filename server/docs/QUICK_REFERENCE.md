@@ -216,7 +216,7 @@ router.post("/book", bookingLimiter, controller.createBooking);
 
 ### Booking
 - user (ref User), hostel (ref Hostel)
-- checkIn, checkOut, numberOfNights, numberOfGuests
+- checkIn, checkOut, numberOfsemsters, numberOfGuests
 - subtotal, taxAmount, totalPrice
 - status, paymentStatus
 - cancellationReason

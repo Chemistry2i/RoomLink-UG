@@ -153,11 +153,11 @@ const hostelSchema = new mongoose.Schema(
       },
       minStay: {
         type: Number,
-        default: 1, // minimum nights
+        default: 1, // minimum semsters
       },
       maxStay: {
         type: Number,
-        default: 365, // maximum nights
+        default: 365, // maximum semsters
       },
     },
 

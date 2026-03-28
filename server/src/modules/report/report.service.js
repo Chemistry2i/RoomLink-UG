@@ -229,7 +229,7 @@ const generateBookingsCSV = async (filters = {}) => {
     if (filters.hostel) query.hostel = filters.hostel;
 
     const bookings = await Booking.find(query)
-      .populate("room", "roomNumber roomType pricePerNight")
+      .populate("room", "roomNumber roomType pricePersemster")
       .populate("hostel", "name address")
       .populate("guest", "name email phone")
       .lean();
