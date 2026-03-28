@@ -23,9 +23,10 @@ export default function WelcomeBanner({
   subtitle,
   action,
   icon: Icon,
+  className = "",
 }) {
   return (
-    <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-red-500 to-red-600 p-6 sm:p-8 mb-8">
+    <div className={`relative overflow-hidden bg-sky-500 p-6 sm:p-8 mb-8 ${className}`}>
       {/* Decorative background */}
       <div className="absolute -top-10 -right-10 w-48 h-48 rounded-full bg-white/5 blur-2xl" />
       <div className="absolute top-3 right-4 opacity-[0.08]">
@@ -45,7 +46,7 @@ export default function WelcomeBanner({
         {action && (
           <Link
             to={action.to}
-            className="inline-flex items-center gap-2 mt-4 px-5 py-2.5 rounded-xl bg-white text-red-600 text-sm font-semibold hover:bg-red-50 transition-colors"
+            className="inline-flex items-center gap-2 mt-4 px-5 py-2.5 rounded-lg bg-white text-sky-600 text-sm font-semibold hover:bg-sky-50 transition-colors"
           >
             {action.label}
             <ArrowRight size={14} />

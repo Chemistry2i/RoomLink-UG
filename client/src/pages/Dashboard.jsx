@@ -43,6 +43,7 @@ export default function Dashboard() {
         icon={HomeIcon}
         subtitle="Here's a snapshot of your bookings and activity."
         action={{ label: 'Find Hostels', to: '/search' }}
+        className="bg-sky-500 text-white rounded-[5px]"
       />
 
       {/* Stats */}
@@ -61,7 +62,7 @@ export default function Dashboard() {
 
         {loading ? (
           <div className="flex items-center justify-center py-16">
-            <div className="w-10 h-10 border-4 border-gray-300 border-t-red-500 rounded-full animate-spin" />
+            <div className="w-10 h-10 border-4 border-gray-300 border-t-sky-400 rounded-full animate-spin" />
           </div>
         ) : bookings.length > 0 ? (
           <div className="space-y-4">
@@ -92,7 +93,7 @@ export default function Dashboard() {
                         booking.status === 'confirmed'
                           ? 'bg-green-100 text-green-700'
                           : booking.status === 'cancelled'
-                          ? 'bg-red-100 text-red-700'
+                          ? 'bg-sky-100 text-sky-700 border border-sky-200'
                           : booking.status === 'completed'
                           ? 'bg-gray-100 text-gray-700'
                           : 'bg-yellow-100 text-yellow-700'
@@ -103,7 +104,7 @@ export default function Dashboard() {
                   </div>
                   <div className="text-right">
                     <p className="text-gray-500 text-xs font-semibold mb-1">Total Cost</p>
-                    <p className="text-xl font-bold text-red-500">
+                    <p className="text-xl font-bold text-sky-600">
                       UGX {booking.totalPrice?.toLocaleString() || 0}
                     </p>
                   </div>

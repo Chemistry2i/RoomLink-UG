@@ -72,7 +72,7 @@ export default function HostHostels() {
       accessor: 'status',
       render: (row) => (
         <span className={`px-2.5 py-1 rounded-full text-xs font-semibold ${
-          row.status === 'active' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-600'
+          row.status === 'active' ? 'bg-green-100 text-green-700' : 'bg-sky-100 text-sky-700 border border-sky-200'
         }`}>
           {row.status || 'active'}
         </span>
@@ -85,31 +85,35 @@ export default function HostHostels() {
         <div className="flex items-center gap-2">
           <Link
             to={`/hostel/${row._id}`}
-            className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+            className="flex items-center gap-1.5 px-3 py-1.5 text-sky-600 hover:bg-sky-50 rounded-lg border-2 border-sky-200 transition-colors text-xs font-semibold"
             title="View"
           >
-            <Eye size={16} />
+            <Eye size={14} />
+            View
           </Link>
           <Link
             to={`/host/hostels/${row._id}/edit`}
-            className="p-2 text-gray-400 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors"
+            className="flex items-center gap-1.5 px-3 py-1.5 text-sky-600 hover:bg-sky-50 rounded-lg border-2 border-sky-200 transition-colors text-xs font-semibold"
             title="Edit"
           >
-            <Edit2 size={16} />
+            <Edit2 size={14} />
+            Edit
           </Link>
           <Link
             to={`/host/hostels/${row._id}/rooms`}
-            className="p-2 text-gray-400 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition-colors"
+            className="flex items-center gap-1.5 px-3 py-1.5 text-sky-600 hover:bg-sky-50 rounded-lg border-2 border-sky-200 transition-colors text-xs font-semibold"
             title="Manage Rooms"
           >
-            <Building2 size={16} />
+            <Building2 size={14} />
+            Rooms
           </Link>
           <button
             onClick={() => setDeleteModal({ open: true, hostel: row })}
-            className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+            className="flex items-center gap-1.5 px-3 py-1.5 text-sky-600 hover:bg-sky-50 rounded-lg border-2 border-sky-200 transition-colors text-xs font-semibold"
             title="Delete"
           >
-            <Trash2 size={16} />
+            <Trash2 size={14} />
+            Delete
           </button>
         </div>
       ),
@@ -158,7 +162,7 @@ export default function HostHostels() {
             </button>
             <button
               onClick={handleDelete}
-              className="px-4 py-2 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700"
+              className="px-4 py-2 bg-sky-500 text-white rounded-lg font-medium border-2 border-sky-500 hover:bg-sky-600"
             >
               Delete
             </button>

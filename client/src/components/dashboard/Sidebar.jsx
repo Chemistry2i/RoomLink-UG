@@ -48,14 +48,14 @@ export default function Sidebar({ items = [], header, collapsed: controlledColla
               title={collapsed ? item.label : undefined}
               className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all ${
                 isActive
-                  ? 'bg-red-50 text-red-600 shadow-sm'
-                  : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                  ? 'bg-sky-50 text-sky-600 shadow-sm'
+                  : 'text-gray-600 hover:bg-sky-50 hover:text-sky-600'
               } ${collapsed ? 'justify-center' : ''}`}
             >
               {Icon && <Icon size={20} className="flex-shrink-0" />}
               {!collapsed && <span className="truncate">{item.label}</span>}
               {!collapsed && item.badge && (
-                <span className="ml-auto bg-red-100 text-red-600 text-xs font-bold px-2 py-0.5 rounded-full">
+                <span className="ml-auto bg-sky-100 text-sky-600 text-xs font-bold px-2 py-0.5 rounded-full">
                   {item.badge}
                 </span>
               )}
@@ -68,7 +68,7 @@ export default function Sidebar({ items = [], header, collapsed: controlledColla
       <div className="p-3 border-t border-gray-100">
         <button
           onClick={toggle}
-          className="w-full flex items-center justify-center gap-2 px-3 py-2 text-gray-400 hover:text-gray-600 hover:bg-gray-50 rounded-lg transition-colors text-sm"
+          className="w-full flex items-center justify-center gap-2 px-3 py-2 text-gray-400 hover:text-sky-600 hover:bg-sky-50 rounded-lg transition-colors text-sm"
         >
           {collapsed ? <ChevronRight size={18} /> : <ChevronLeft size={18} />}
           {!collapsed && <span>Collapse</span>}

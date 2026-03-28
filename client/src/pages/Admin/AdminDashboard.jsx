@@ -42,7 +42,7 @@ export default function AdminDashboard() {
     return (
       <DashboardLayout sidebarItems={adminSidebarItems} sidebarHeader="Admin Panel">
         <div className="flex items-center justify-center py-20">
-          <div className="w-10 h-10 border-4 border-gray-300 border-t-red-500 rounded-full animate-spin" />
+          <div className="w-10 h-10 border-4 border-gray-300 border-t-sky-400 rounded-full animate-spin" />
         </div>
       </DashboardLayout>
     )
@@ -57,6 +57,7 @@ export default function AdminDashboard() {
         icon={ShieldCheck}
         subtitle="Platform overview and system health."
         action={{ label: 'View Reports', to: '/admin/reports' }}
+        className="rounded-[5px] text-white"
       />
 
       {/* Stats Grid */}
@@ -125,7 +126,7 @@ export default function AdminDashboard() {
             <div className="grid grid-cols-2 gap-4">
               <div className="p-4 bg-gray-50 rounded-lg">
                 <p className="text-sm text-gray-500">Open Complaints</p>
-                <p className="text-2xl font-bold text-red-600">{stats.complaints?.open || 0}</p>
+                <p className="text-2xl font-bold text-sky-600">{stats.complaints?.open || 0}</p>
               </div>
               <div className="p-4 bg-gray-50 rounded-lg">
                 <p className="text-sm text-gray-500">Pending Bookings</p>
