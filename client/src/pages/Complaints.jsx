@@ -85,7 +85,7 @@ export default function Complaints() {
               onClick={() => setStatusFilter(status)}
               className={`px-3 py-1.5 rounded-full text-sm font-medium border transition-colors ${
                 statusFilter === status
-                  ? 'bg-red-50 border-red-300 text-red-600'
+                  ? 'bg-blue-50 border-blue-300 text-blue-600'
                   : 'border-gray-200 text-gray-600 hover:bg-gray-50'
               }`}
             >
@@ -97,7 +97,7 @@ export default function Complaints() {
         {/* Complaints List */}
         {loading ? (
           <div className="flex items-center justify-center py-20">
-            <div className="w-10 h-10 border-4 border-gray-300 border-t-red-500 rounded-full animate-spin" />
+            <div className="w-10 h-10 border-4 border-gray-300 border-t-blue-500 rounded-full animate-spin" />
           </div>
         ) : complaints.length > 0 ? (
           <div className="space-y-3">
@@ -152,7 +152,7 @@ export default function Complaints() {
             <button onClick={() => setCreateModal(false)} className="px-4 py-2 border border-gray-300 rounded-lg font-medium hover:bg-gray-50">
               Cancel
             </button>
-            <button onClick={handleCreate} disabled={loading || !form.title || !form.description} className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 disabled:opacity-50">
+            <button onClick={handleCreate} disabled={loading || !form.title || !form.description} className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 disabled:opacity-50">
               <Send size={16} />
               Submit
             </button>
@@ -165,7 +165,7 @@ export default function Complaints() {
             <select
               value={form.category}
               onChange={(e) => setForm({ ...form, category: e.target.value })}
-              className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-400"
+              className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400"
             >
               {CATEGORIES.map((c) => <option key={c} value={c}>{c}</option>)}
             </select>
@@ -176,9 +176,9 @@ export default function Complaints() {
               type="text"
               value={form.title}
               onChange={(e) => setForm({ ...form, title: e.target.value })}
-              className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-400"
+              className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400"
               placeholder="Brief summary of the issue"
-              required
+              requiblue
             />
           </div>
           <div>
@@ -187,9 +187,9 @@ export default function Complaints() {
               value={form.description}
               onChange={(e) => setForm({ ...form, description: e.target.value })}
               rows={4}
-              className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-400 resize-none"
+              className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400 resize-none"
               placeholder="Describe the issue in detail..."
-              required
+              requiblue
             />
           </div>
         </form>

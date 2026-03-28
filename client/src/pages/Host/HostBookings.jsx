@@ -7,7 +7,7 @@ import { hostSidebarItems } from '../../config/sidebarItems'
 const STATUS_STYLES = {
   confirmed: { bg: 'bg-green-100', text: 'text-green-700', icon: CheckCircle, label: 'Confirmed' },
   pending: { bg: 'bg-yellow-100', text: 'text-yellow-700', icon: Clock, label: 'Pending' },
-  cancelled: { bg: 'bg-red-100', text: 'text-red-700', icon: XCircle, label: 'Cancelled' },
+  cancelled: { bg: 'bg-blue-100', text: 'text-blue-700', icon: XCircle, label: 'Cancelled' },
   checked_in: { bg: 'bg-blue-100', text: 'text-blue-700', icon: CheckCircle, label: 'Checked In' },
   completed: { bg: 'bg-gray-100', text: 'text-gray-700', icon: CheckCircle, label: 'Completed' },
 }
@@ -141,7 +141,7 @@ export default function HostBookings() {
             onClick={() => setStatusFilter(status)}
             className={`px-3 py-1.5 rounded-full text-sm font-medium border transition-colors ${
               statusFilter === status
-                ? 'bg-red-50 border-red-300 text-red-600'
+                ? 'bg-blue-50 border-blue-300 text-blue-600'
                 : 'border-gray-200 text-gray-600 hover:bg-gray-50'
             }`}
           >

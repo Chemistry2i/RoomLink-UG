@@ -80,7 +80,7 @@ export default function HostReviews() {
           <select
             value={selectedHostel}
             onChange={(e) => setSelectedHostel(e.target.value)}
-            className="px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-400"
+            className="px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400"
           >
             {hostels.map((h) => (
               <option key={h._id} value={h._id}>{h.name}</option>
@@ -115,7 +115,7 @@ export default function HostReviews() {
       {/* Reviews List */}
       {loading ? (
         <div className="flex items-center justify-center py-20">
-          <div className="w-10 h-10 border-4 border-gray-300 border-t-red-500 rounded-full animate-spin" />
+          <div className="w-10 h-10 border-4 border-gray-300 border-t-blue-500 rounded-full animate-spin" />
         </div>
       ) : reviews.length > 0 ? (
         <div className="space-y-4">
@@ -140,8 +140,8 @@ export default function HostReviews() {
 
               {/* Owner Response */}
               {review.ownerResponse?.text ? (
-                <div className="mt-3 pl-4 border-l-2 border-red-200 bg-red-50/50 rounded-r-lg p-3">
-                  <p className="text-xs font-semibold text-red-600 mb-1">Your Reply</p>
+                <div className="mt-3 pl-4 border-l-2 border-blue-200 bg-blue-50/50 rounded-r-lg p-3">
+                  <p className="text-xs font-semibold text-blue-600 mb-1">Your Reply</p>
                   <p className="text-sm text-gray-700">{review.ownerResponse.text}</p>
                   {review.ownerResponse.respondedAt && (
                     <p className="text-xs text-gray-400 mt-1">
@@ -156,14 +156,14 @@ export default function HostReviews() {
                     onChange={(e) => setReplyText(e.target.value)}
                     placeholder="Write your reply..."
                     rows={2}
-                    className="flex-1 px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-400 resize-none"
+                    className="flex-1 px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400 resize-none"
                     maxLength={500}
                   />
                   <div className="flex flex-col gap-1">
                     <button
                       onClick={() => handleReply(review._id)}
                       disabled={replyLoading || !replyText.trim()}
-                      className="p-2 bg-red-600 text-white rounded-lg hover:bg-red-700 disabled:opacity-50 transition-colors"
+                      className="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 transition-colors"
                       title="Send reply"
                     >
                       <Send size={16} />
@@ -179,7 +179,7 @@ export default function HostReviews() {
               ) : (
                 <button
                   onClick={() => { setReplyingTo(review._id); setReplyText('') }}
-                  className="mt-3 flex items-center gap-1.5 text-sm text-gray-500 hover:text-red-600 transition-colors"
+                  className="mt-3 flex items-center gap-1.5 text-sm text-gray-500 hover:text-blue-600 transition-colors"
                 >
                   <Reply size={14} />
                   Reply

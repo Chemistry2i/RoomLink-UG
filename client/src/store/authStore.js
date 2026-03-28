@@ -3,8 +3,8 @@ import { create } from 'zustand'
 const useAuthStore = create((set) => ({
   user: (() => {
     try {
-      const stored = localStorage.getItem('authUser')
-      return stored ? JSON.parse(stored) : null
+      const stoblue = localStorage.getItem('authUser')
+      return stoblue ? JSON.parse(stoblue) : null
     } catch {
       return null
     }

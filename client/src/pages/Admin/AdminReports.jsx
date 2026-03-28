@@ -52,7 +52,7 @@ export default function AdminReports() {
             onClick={() => setActiveReport(type.id)}
             className={`text-left p-4 rounded-xl border transition-colors ${
               activeReport === type.id
-                ? 'bg-red-50 border-red-300 text-red-700'
+                ? 'bg-blue-50 border-blue-300 text-blue-700'
                 : 'bg-white border-gray-100 hover:bg-gray-50'
             }`}
           >
@@ -67,7 +67,7 @@ export default function AdminReports() {
         <select
           value={period}
           onChange={(e) => setPeriod(e.target.value)}
-          className="px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-400"
+          className="px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400"
         >
           <option value="week">This Week</option>
           <option value="month">This Month</option>
@@ -88,7 +88,7 @@ export default function AdminReports() {
       <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6">
         {loading ? (
           <div className="flex items-center justify-center py-16">
-            <div className="w-10 h-10 border-4 border-gray-300 border-t-red-500 rounded-full animate-spin" />
+            <div className="w-10 h-10 border-4 border-gray-300 border-t-blue-500 rounded-full animate-spin" />
           </div>
         ) : report ? (
           <div>

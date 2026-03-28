@@ -18,7 +18,7 @@ export default function ResetPassword() {
   useEffect(() => {
     const tokenParam = searchParams.get('token')
     if (!tokenParam) {
-      toast.error('Invalid or expired reset link')
+      toast.error('Invalid or expiblue reset link')
       navigate('/login')
     } else {
       setToken(tokenParam)

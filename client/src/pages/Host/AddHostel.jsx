@@ -120,7 +120,7 @@ export default function AddHostel() {
                   name="name"
                   value={form.name}
                   onChange={handleChange}
-                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-400"
+                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400"
                   required
                   placeholder="e.g., Sunrise Student Hostel"
                 />
@@ -132,7 +132,7 @@ export default function AddHostel() {
                   value={form.description}
                   onChange={handleChange}
                   rows={4}
-                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-400 resize-none"
+                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400 resize-none"
                   required
                   placeholder="Describe your hostel, its location benefits, facilities..."
                 />
@@ -154,7 +154,7 @@ export default function AddHostel() {
                   name="street"
                   value={form.street}
                   onChange={handleChange}
-                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-400"
+                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400"
                   required
                   placeholder="e.g., Plot 12 University Road"
                 />
@@ -166,7 +166,7 @@ export default function AddHostel() {
                   name="city"
                   value={form.city}
                   onChange={handleChange}
-                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-400"
+                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400"
                   required
                   placeholder="e.g., Kampala"
                 />
@@ -178,7 +178,7 @@ export default function AddHostel() {
                   name="state"
                   value={form.state}
                   onChange={handleChange}
-                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-400"
+                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400"
                   placeholder="e.g., Central"
                 />
               </div>
@@ -189,7 +189,7 @@ export default function AddHostel() {
                   name="country"
                   value={form.country}
                   onChange={handleChange}
-                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-400"
+                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400"
                   placeholder="Uganda"
                 />
               </div>
@@ -200,7 +200,7 @@ export default function AddHostel() {
                   name="contactPhone"
                   value={form.contactPhone}
                   onChange={handleChange}
-                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-400"
+                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400"
                   required
                   placeholder="+256 7XX XXX XXX"
                 />
@@ -212,7 +212,7 @@ export default function AddHostel() {
                   name="contactEmail"
                   value={form.contactEmail}
                   onChange={handleChange}
-                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-400"
+                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400"
                   required
                   placeholder="hostel@example.com"
                 />
@@ -241,7 +241,7 @@ export default function AddHostel() {
                   name="priceRange.min"
                   value={form.priceRange.min}
                   onChange={handleChange}
-                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-400"
+                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400"
                   placeholder="500000"
                 />
               </div>
@@ -252,7 +252,7 @@ export default function AddHostel() {
                   name="priceRange.max"
                   value={form.priceRange.max}
                   onChange={handleChange}
-                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-400"
+                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400"
                   placeholder="1500000"
                 />
               </div>
@@ -273,7 +273,7 @@ export default function AddHostel() {
                   onClick={() => toggleAmenity(amenity)}
                   className={`px-3 py-1.5 rounded-full text-sm font-medium border transition-colors ${
                     form.amenities.includes(amenity)
-                      ? 'bg-red-50 border-red-300 text-red-600'
+                      ? 'bg-blue-50 border-blue-300 text-blue-600'
                       : 'border-gray-200 text-gray-600 hover:bg-gray-50'
                   }`}
                 >
@@ -296,14 +296,14 @@ export default function AddHostel() {
                   <button
                     type="button"
                     onClick={() => removeImage(i)}
-                    className="absolute top-1 right-1 p-1 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                    className="absolute top-1 right-1 p-1 bg-blue-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
                   >
                     <X size={14} />
                   </button>
                 </div>
               ))}
               {previews.length < 8 && (
-                <label className="aspect-square rounded-lg border-2 border-dashed border-gray-300 flex flex-col items-center justify-center cursor-pointer hover:border-red-400 hover:bg-red-50/50 transition-colors">
+                <label className="aspect-square rounded-lg border-2 border-dashed border-gray-300 flex flex-col items-center justify-center cursor-pointer hover:border-blue-400 hover:bg-blue-50/50 transition-colors">
                   <Upload size={24} className="text-gray-400 mb-1" />
                   <span className="text-xs text-gray-400">Add Image</span>
                   <input

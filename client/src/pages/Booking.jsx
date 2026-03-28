@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import MpesaIcon from '../assets/payment/mpesa.svg';
-import CreditCardIcon from '../assets/payment/credit-card.svg';
+import CblueitCardIcon from '../assets/payment/cblueit-card.svg';
 import DebitCardIcon from '../assets/payment/debit-card.svg';
 import BankTransferIcon from '../assets/payment/bank-transfer.svg';
 import CashIcon from '../assets/payment/cash.svg';
@@ -109,7 +109,7 @@ export default function Booking() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <div className="w-12 h-12 border-4 border-gray-300 border-t-red-500 rounded-full animate-spin mx-auto mb-4"></div>
+          <div className="w-12 h-12 border-4 border-gray-300 border-t-blue-500 rounded-full animate-spin mx-auto mb-4"></div>
           <p>Loading booking form...</p>
         </div>
       </div>
@@ -123,7 +123,7 @@ export default function Booking() {
       <div className="container-max py-8">
         <button
           onClick={() => navigate(-1)}
-          className="flex items-center gap-2 text-red-500 font-semibold mb-8 hover:text-red-600"
+          className="flex items-center gap-2 text-blue-500 font-semibold mb-8 hover:text-blue-600"
         >
           <ArrowLeft size={20} />
           Back
@@ -140,7 +140,7 @@ export default function Booking() {
                 <div>
                   <label className="block text-sm font-semibold mb-2">Payment Method</label>
                   <div className="flex flex-wrap gap-4">
-                    <label className={`flex items-center gap-2 border rounded-lg px-3 py-2 cursor-pointer ${bookingData.paymentMethod === 'M-Pesa' ? 'ring-2 ring-red-500' : 'border-gray-300'}`}>
+                    <label className={`flex items-center gap-2 border rounded-lg px-3 py-2 cursor-pointer ${bookingData.paymentMethod === 'M-Pesa' ? 'ring-2 ring-blue-500' : 'border-gray-300'}`}>
                       <img src={MpesaIcon} alt="M-Pesa" className="w-8 h-8" />
                       <span className="font-medium">M-Pesa</span>
                       <input
@@ -153,20 +153,20 @@ export default function Booking() {
                         required
                       />
                     </label>
-                    <label className={`flex items-center gap-2 border rounded-lg px-3 py-2 cursor-pointer ${bookingData.paymentMethod === 'Credit Card' ? 'ring-2 ring-red-500' : 'border-gray-300'}`}>
-                      <img src={CreditCardIcon} alt="Credit Card" className="w-8 h-8" />
-                      <span className="font-medium">Credit Card</span>
+                    <label className={`flex items-center gap-2 border rounded-lg px-3 py-2 cursor-pointer ${bookingData.paymentMethod === 'Cblueit Card' ? 'ring-2 ring-blue-500' : 'border-gray-300'}`}>
+                      <img src={CblueitCardIcon} alt="Cblueit Card" className="w-8 h-8" />
+                      <span className="font-medium">Cblueit Card</span>
                       <input
                         type="radio"
                         name="paymentMethod"
-                        value="Credit Card"
-                        checked={bookingData.paymentMethod === 'Credit Card'}
+                        value="Cblueit Card"
+                        checked={bookingData.paymentMethod === 'Cblueit Card'}
                         onChange={e => setBookingData({ ...bookingData, paymentMethod: e.target.value })}
                         className="hidden"
                         required
                       />
                     </label>
-                    <label className={`flex items-center gap-2 border rounded-lg px-3 py-2 cursor-pointer ${bookingData.paymentMethod === 'Debit Card' ? 'ring-2 ring-red-500' : 'border-gray-300'}`}>
+                    <label className={`flex items-center gap-2 border rounded-lg px-3 py-2 cursor-pointer ${bookingData.paymentMethod === 'Debit Card' ? 'ring-2 ring-blue-500' : 'border-gray-300'}`}>
                       <img src={DebitCardIcon} alt="Debit Card" className="w-8 h-8" />
                       <span className="font-medium">Debit Card</span>
                       <input
@@ -179,7 +179,7 @@ export default function Booking() {
                         required
                       />
                     </label>
-                    <label className={`flex items-center gap-2 border rounded-lg px-3 py-2 cursor-pointer ${bookingData.paymentMethod === 'Bank Transfer' ? 'ring-2 ring-red-500' : 'border-gray-300'}`}>
+                    <label className={`flex items-center gap-2 border rounded-lg px-3 py-2 cursor-pointer ${bookingData.paymentMethod === 'Bank Transfer' ? 'ring-2 ring-blue-500' : 'border-gray-300'}`}>
                       <img src={BankTransferIcon} alt="Bank Transfer" className="w-8 h-8" />
                       <span className="font-medium">Bank Transfer</span>
                       <input
@@ -192,7 +192,7 @@ export default function Booking() {
                         required
                       />
                     </label>
-                    <label className={`flex items-center gap-2 border rounded-lg px-3 py-2 cursor-pointer ${bookingData.paymentMethod === 'Cash' ? 'ring-2 ring-red-500' : 'border-gray-300'}`}>
+                    <label className={`flex items-center gap-2 border rounded-lg px-3 py-2 cursor-pointer ${bookingData.paymentMethod === 'Cash' ? 'ring-2 ring-blue-500' : 'border-gray-300'}`}>
                       <img src={CashIcon} alt="Cash" className="w-8 h-8" />
                       <span className="font-medium">Cash</span>
                       <input
@@ -228,7 +228,7 @@ export default function Booking() {
                         onChange={(e) =>
                           setBookingData({ ...bookingData, checkInDate: e.target.value })
                         }
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 outline-none"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                         required
                       />
                     </div>
@@ -240,7 +240,7 @@ export default function Booking() {
                         onChange={(e) =>
                           setBookingData({ ...bookingData, checkOutDate: e.target.value })
                         }
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 outline-none"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                         required
                       />
                     </div>
@@ -258,7 +258,7 @@ export default function Booking() {
                     onChange={(e) =>
                       setBookingData({ ...bookingData, guestCount: parseInt(e.target.value) })
                     }
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 outline-none"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                   />
                 </div>
 
@@ -272,7 +272,7 @@ export default function Booking() {
                     }
                     placeholder="Any special requests? (optional)"
                     rows="4"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 outline-none"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                   ></textarea>
                 </div>
 

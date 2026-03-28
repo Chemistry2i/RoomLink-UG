@@ -4,7 +4,6 @@ export default function StatsCard({ title, value, icon: Icon, trend, trendLabel,
   const colorMap = {
     blue:   { bg: 'bg-blue-50',   icon: 'bg-blue-100 text-blue-600',   trend: 'text-blue-600' },
     green:  { bg: 'bg-green-50',  icon: 'bg-green-100 text-green-600', trend: 'text-green-600' },
-    red:    { bg: 'bg-red-50',    icon: 'bg-red-100 text-red-600',     trend: 'text-red-600' },
     purple: { bg: 'bg-purple-50', icon: 'bg-purple-100 text-purple-600', trend: 'text-purple-600' },
     yellow: { bg: 'bg-yellow-50', icon: 'bg-yellow-100 text-yellow-600', trend: 'text-yellow-600' },
     orange: { bg: 'bg-orange-50', icon: 'bg-orange-100 text-orange-600', trend: 'text-orange-600' },
@@ -13,7 +12,7 @@ export default function StatsCard({ title, value, icon: Icon, trend, trendLabel,
   const colors = colorMap[color] || colorMap.blue
 
   const TrendIcon = trend > 0 ? TrendingUp : trend < 0 ? TrendingDown : Minus
-  const trendColor = trend > 0 ? 'text-green-600' : trend < 0 ? 'text-red-500' : 'text-gray-400'
+  const trendColor = trend > 0 ? 'text-green-600' : trend < 0 ? 'text-blue-500' : 'text-gray-400'
 
   return (
     <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-5 hover:shadow-md transition-shadow">

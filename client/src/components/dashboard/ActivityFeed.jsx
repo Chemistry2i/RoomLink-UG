@@ -12,7 +12,7 @@ const typeColors = {
   booking:   'bg-blue-100 text-blue-700',
   payment:   'bg-green-100 text-green-700',
   review:    'bg-purple-100 text-purple-700',
-  complaint: 'bg-red-100 text-red-700',
+  complaint: 'bg-blue-100 text-blue-700',
   hostel:    'bg-orange-100 text-orange-700',
   user:      'bg-gray-100 text-gray-700',
   system:    'bg-yellow-100 text-yellow-700',

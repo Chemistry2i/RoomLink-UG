@@ -8,7 +8,7 @@ import PrivateRoute from './components/PrivateRoute'
 // Spinner for lazy-loaded routes
 const PageLoader = () => (
   <div className="min-h-screen flex items-center justify-center">
-    <div className="w-12 h-12 border-4 border-gray-300 border-t-red-500 rounded-full animate-spin"></div>
+    <div className="w-12 h-12 border-4 border-gray-300 border-t-blue-500 rounded-full animate-spin"></div>
   </div>
 )
 

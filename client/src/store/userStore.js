@@ -26,9 +26,9 @@ const useUserStore = create((set) => ({
       const { data } = await api.patch('/users/profile', profileData)
       set({ profile: data.data, loading: false })
       // Also update auth store user
-      const stored = localStorage.getItem('authUser')
-      if (stored) {
-        const user = JSON.parse(stored)
+      const stoblue = localStorage.getItem('authUser')
+      if (stoblue) {
+        const user = JSON.parse(stoblue)
         const updated = { ...user, ...data.data }
         localStorage.setItem('authUser', JSON.stringify(updated))
       }

@@ -10,7 +10,7 @@ const statusConfig = {
   confirmed:  { bg: 'bg-green-100',  text: 'text-green-700',  label: 'Confirmed' },
   checked_in: { bg: 'bg-blue-100',   text: 'text-blue-700',   label: 'Checked In' },
   completed:  { bg: 'bg-gray-100',   text: 'text-gray-700',   label: 'Completed' },
-  cancelled:  { bg: 'bg-red-100',    text: 'text-red-700',    label: 'Cancelled' },
+  cancelled:  { bg: 'bg-blue-100',    text: 'text-blue-700',    label: 'Cancelled' },
 }
 
 export default function AdminBookings() {
@@ -158,7 +158,7 @@ export default function AdminBookings() {
           {(row.status === 'pending' || row.status === 'confirmed') && (
             <button
               onClick={() => handleCancel(row._id)}
-              className="p-1.5 text-red-600 hover:bg-red-50 rounded-lg"
+              className="p-1.5 text-blue-600 hover:bg-blue-50 rounded-lg"
               title="Cancel"
             >
               <XCircle size={16} />
@@ -184,7 +184,7 @@ export default function AdminBookings() {
             onClick={() => setStatusFilter(status)}
             className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${
               statusFilter === status
-                ? 'bg-red-500 text-white'
+                ? 'bg-blue-500 text-white'
                 : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-50'
             }`}
           >
@@ -267,7 +267,7 @@ export default function AdminBookings() {
                 <button
                   onClick={() => handleCancel(selectedBooking._id)}
                   disabled={actionLoading}
-                  className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 disabled:opacity-50"
+                  className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50"
                 >
                   <XCircle size={16} />
                   Cancel

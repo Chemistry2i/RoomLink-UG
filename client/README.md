@@ -65,7 +65,7 @@ src/
 
 ## Page Overview
 
-- **Home** - Landing page with featured hostels
+- **Home** - Landing page with featublue hostels
 - **Search** - Search and filter hostels
 - **HostelDetail** - View hostel info and rooms
 - **Booking** - Book a room with dates

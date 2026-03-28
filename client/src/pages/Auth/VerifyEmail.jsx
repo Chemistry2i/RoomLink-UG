@@ -66,7 +66,7 @@ export default function VerifyEmail() {
               <i className="fas fa-check text-2xl text-green-600"></i>
             </div>
             <h3 className="text-xl font-bold mb-2">Email Verified!</h3>
-            <p className="text-gray-600">Your email has been verified successfully. Redirecting to login...</p>
+            <p className="text-gray-600">Your email has been verified successfully. redirecting to login...</p>
           </div>
         )}
 

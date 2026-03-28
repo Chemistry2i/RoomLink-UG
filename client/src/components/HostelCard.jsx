@@ -24,7 +24,7 @@ export default function HostelCard({ hostel }) {
           >
             <Heart
               size={20}
-              className={isFavorite ? 'fill-red-500 text-red-500' : 'text-gray-700'}
+              className={isFavorite ? 'fill-blue-500 text-blue-500' : 'text-gray-700'}
             />
           </button>
         </div>

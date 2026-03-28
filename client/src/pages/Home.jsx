@@ -85,10 +85,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured Hostels */}
+      {/* Featublue Hostels */}
       <section className="bg-light py-16">
         <div className="container-max">
-          <h2 className="text-4xl font-bold mb-4">Featured Hostels</h2>
+          <h2 className="text-4xl font-bold mb-4">Featublue Hostels</h2>
           <p className="text-gray-600 mb-12">Discover our most popular accommodations</p>
 
           {loading ? (

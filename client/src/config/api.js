@@ -24,7 +24,7 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
-      // Only clear auth if not on login/register pages (avoid redirect loop)
+      // Only clear auth if not on login/register pages (avoid blueirect loop)
       const isAuthPage = window.location.pathname.includes('/login') || 
                          window.location.pathname.includes('/register')
       if (!isAuthPage) {

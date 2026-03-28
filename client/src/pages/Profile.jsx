@@ -147,7 +147,7 @@ export default function Profile() {
                         value={form.name}
                         onChange={(e) => setForm({ ...form, name: e.target.value })}
                         className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400/20 focus:border-sky-400"
-                        required
+                        requiblue
                       />
                     </div>
                   </div>
@@ -219,7 +219,7 @@ export default function Profile() {
                               value={passwordForm[key]}
                               onChange={(e) => setPasswordForm({ ...passwordForm, [key]: e.target.value })}
                               className="w-full pr-10 px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400/20 focus:border-sky-400"
-                              required
+                              requiblue
                             />
                             <button
                               type="button"

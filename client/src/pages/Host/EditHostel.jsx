@@ -139,7 +139,7 @@ export default function EditHostel() {
     return (
       <DashboardLayout sidebarItems={hostSidebarItems} sidebarHeader="Host Panel">
         <div className="flex items-center justify-center py-20">
-          <div className="w-10 h-10 border-4 border-gray-300 border-t-red-500 rounded-full animate-spin" />
+          <div className="w-10 h-10 border-4 border-gray-300 border-t-blue-500 rounded-full animate-spin" />
         </div>
       </DashboardLayout>
     )
@@ -161,11 +161,11 @@ export default function EditHostel() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="md:col-span-2">
                 <label className="block text-sm font-medium text-gray-700 mb-1">Hostel Name *</label>
-                <input type="text" name="name" value={form.name} onChange={handleChange} className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-400" required />
+                <input type="text" name="name" value={form.name} onChange={handleChange} className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400" required />
               </div>
               <div className="md:col-span-2">
                 <label className="block text-sm font-medium text-gray-700 mb-1">Description *</label>
-                <textarea name="description" value={form.description} onChange={handleChange} rows={4} className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-400 resize-none" required />
+                <textarea name="description" value={form.description} onChange={handleChange} rows={4} className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400 resize-none" required />
               </div>
             </div>
           </div>
@@ -179,27 +179,27 @@ export default function EditHostel() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Street Address *</label>
-                <input type="text" name="street" value={form.street} onChange={handleChange} className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-400" required />
+                <input type="text" name="street" value={form.street} onChange={handleChange} className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400" required />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">City *</label>
-                <input type="text" name="city" value={form.city} onChange={handleChange} className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-400" required />
+                <input type="text" name="city" value={form.city} onChange={handleChange} className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400" required />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">State / Region</label>
-                <input type="text" name="state" value={form.state} onChange={handleChange} className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-400" />
+                <input type="text" name="state" value={form.state} onChange={handleChange} className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400" />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Country</label>
-                <input type="text" name="country" value={form.country} onChange={handleChange} className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-400" />
+                <input type="text" name="country" value={form.country} onChange={handleChange} className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400" />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Contact Phone *</label>
-                <input type="tel" name="contactPhone" value={form.contactPhone} onChange={handleChange} className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-400" required />
+                <input type="tel" name="contactPhone" value={form.contactPhone} onChange={handleChange} className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400" required />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Contact Email *</label>
-                <input type="email" name="contactEmail" value={form.contactEmail} onChange={handleChange} className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-400" required />
+                <input type="email" name="contactEmail" value={form.contactEmail} onChange={handleChange} className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400" required />
               </div>
             </div>
 
@@ -220,11 +220,11 @@ export default function EditHostel() {
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Min Price</label>
-                <input type="number" name="priceRange.min" value={form.priceRange.min} onChange={handleChange} className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-400" />
+                <input type="number" name="priceRange.min" value={form.priceRange.min} onChange={handleChange} className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400" />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Max Price</label>
-                <input type="number" name="priceRange.max" value={form.priceRange.max} onChange={handleChange} className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-400" />
+                <input type="number" name="priceRange.max" value={form.priceRange.max} onChange={handleChange} className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400" />
               </div>
             </div>
           </div>
@@ -243,7 +243,7 @@ export default function EditHostel() {
                   onClick={() => toggleAmenity(amenity)}
                   className={`px-3 py-1.5 rounded-full text-sm font-medium border transition-colors ${
                     form.amenities.includes(amenity)
-                      ? 'bg-red-50 border-red-300 text-red-600'
+                      ? 'bg-blue-50 border-blue-300 text-blue-600'
                       : 'border-gray-200 text-gray-600 hover:bg-gray-50'
                   }`}
                 >
@@ -263,7 +263,7 @@ export default function EditHostel() {
               {existingImages.map((src, i) => (
                 <div key={`existing-${i}`} className="relative aspect-square rounded-lg overflow-hidden group">
                   <img src={src} alt="" className="w-full h-full object-cover" />
-                  <button type="button" onClick={() => removeExistingImage(i)} className="absolute top-1 right-1 p-1 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                  <button type="button" onClick={() => removeExistingImage(i)} className="absolute top-1 right-1 p-1 bg-blue-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
                     <X size={14} />
                   </button>
                 </div>
@@ -272,13 +272,13 @@ export default function EditHostel() {
                 <div key={`new-${i}`} className="relative aspect-square rounded-lg overflow-hidden group">
                   <img src={src} alt="" className="w-full h-full object-cover" />
                   <div className="absolute top-1 left-1 bg-green-500 text-white text-[10px] px-1.5 py-0.5 rounded font-bold">NEW</div>
-                  <button type="button" onClick={() => removeNewImage(i)} className="absolute top-1 right-1 p-1 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                  <button type="button" onClick={() => removeNewImage(i)} className="absolute top-1 right-1 p-1 bg-blue-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
                     <X size={14} />
                   </button>
                 </div>
               ))}
               {existingImages.length + newPreviews.length < 8 && (
-                <label className="aspect-square rounded-lg border-2 border-dashed border-gray-300 flex flex-col items-center justify-center cursor-pointer hover:border-red-400 hover:bg-red-50/50 transition-colors">
+                <label className="aspect-square rounded-lg border-2 border-dashed border-gray-300 flex flex-col items-center justify-center cursor-pointer hover:border-blue-400 hover:bg-blue-50/50 transition-colors">
                   <Upload size={24} className="text-gray-400 mb-1" />
                   <span className="text-xs text-gray-400">Add Image</span>
                   <input type="file" accept="image/*" multiple onChange={handleImageChange} className="hidden" />

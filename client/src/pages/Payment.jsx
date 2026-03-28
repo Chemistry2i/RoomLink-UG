@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
-import { CreditCard, Phone, CheckCircle, Clock, AlertCircle, ArrowLeft } from 'lucide-react'
+import { CblueitCard, Phone, CheckCircle, Clock, AlertCircle, ArrowLeft } from 'lucide-react'
 import useAuthStore from '../store/authStore'
 import usePaymentStore from '../store/paymentStore'
 import api from '../config/api'
@@ -77,7 +77,7 @@ export default function Payment() {
   if (fetchLoading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="w-10 h-10 border-4 border-gray-300 border-t-red-500 rounded-full animate-spin" />
+        <div className="w-10 h-10 border-4 border-gray-300 border-t-blue-500 rounded-full animate-spin" />
       </div>
     )
   }
@@ -109,8 +109,8 @@ export default function Payment() {
 
         {paymentState === 'failed' && (
           <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 text-center">
-            <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <AlertCircle size={32} className="text-red-600" />
+            <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <AlertCircle size={32} className="text-blue-600" />
             </div>
             <h2 className="text-2xl font-bold mb-2">Payment Failed</h2>
             <p className="text-gray-600 mb-6">Something went wrong. Please try again.</p>
@@ -129,7 +129,7 @@ export default function Payment() {
             <p className="text-gray-600 mb-2">
               {method === 'mpesa' ? 'Check your phone for the M-Pesa prompt...' : 'Processing your payment...'}
             </p>
-            <div className="w-8 h-8 border-4 border-gray-300 border-t-red-500 rounded-full animate-spin mx-auto mt-4" />
+            <div className="w-8 h-8 border-4 border-gray-300 border-t-blue-500 rounded-full animate-spin mx-auto mt-4" />
           </div>
         )}
 
@@ -155,7 +155,7 @@ export default function Payment() {
                 </div>
                 <div className="border-t border-gray-100 pt-2 mt-2 flex justify-between">
                   <span className="font-semibold">Total Amount</span>
-                  <span className="text-xl font-bold text-red-600">
+                  <span className="text-xl font-bold text-blue-600">
                     UGX {booking?.totalPrice?.toLocaleString() || 0}
                   </span>
                 </div>
@@ -171,7 +171,7 @@ export default function Payment() {
                   onClick={() => setMethod('mpesa')}
                   className={`p-4 rounded-xl border-2 text-center transition-colors ${
                     method === 'mpesa'
-                      ? 'border-red-500 bg-red-50'
+                      ? 'border-blue-500 bg-blue-50'
                       : 'border-gray-200 hover:border-gray-300'
                   }`}
                 >
@@ -184,11 +184,11 @@ export default function Payment() {
                   onClick={() => setMethod('card')}
                   className={`p-4 rounded-xl border-2 text-center transition-colors ${
                     method === 'card'
-                      ? 'border-red-500 bg-red-50'
+                      ? 'border-blue-500 bg-blue-50'
                       : 'border-gray-200 hover:border-gray-300'
                   }`}
                 >
-                  <CreditCard size={24} className="mx-auto mb-2 text-blue-600" />
+                  <CblueitCard size={24} className="mx-auto mb-2 text-blue-600" />
                   <p className="font-semibold text-sm">Card</p>
                   <p className="text-xs text-gray-500">Visa / Mastercard</p>
                 </button>
@@ -201,7 +201,7 @@ export default function Payment() {
                     type="tel"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-400"
+                    className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400"
                     placeholder="256 7XX XXX XXX"
                     required
                   />

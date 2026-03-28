@@ -42,7 +42,7 @@ export default function HostelDetail() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <div className="w-12 h-12 border-4 border-gray-300 border-t-red-500 rounded-full animate-spin mx-auto mb-4"></div>
+          <div className="w-12 h-12 border-4 border-gray-300 border-t-blue-500 rounded-full animate-spin mx-auto mb-4"></div>
           <p>Loading hostel details...</p>
         </div>
       </div>
@@ -79,7 +79,7 @@ export default function HostelDetail() {
                   key={idx}
                   onClick={() => setSelectedImageIndex(idx)}
                   className={`w-20 h-20 rounded-lg overflow-hidden border-2 flex-shrink-0 ${
-                    selectedImageIndex === idx ? 'border-red-500' : 'border-gray-300'
+                    selectedImageIndex === idx ? 'border-blue-500' : 'border-gray-300'
                   }`}
                 >
                   <img src={img.url} alt="" className="w-full h-full object-cover" />
@@ -124,7 +124,7 @@ export default function HostelDetail() {
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                 {hostel.amenities?.map((amenity) => (
                   <div key={amenity} className="flex items-center gap-2">
-                    <Wifi size={20} className="text-red-500" />
+                    <Wifi size={20} className="text-blue-500" />
                     <span>{amenity}</span>
                   </div>
                 ))}
@@ -220,11 +220,11 @@ export default function HostelDetail() {
                 }}
                 className={`w-full py-3 flex items-center justify-center gap-2 font-semibold rounded-lg border transition-colors ${
                   saved
-                    ? 'bg-red-50 border-red-300 text-red-600'
+                    ? 'bg-blue-50 border-blue-300 text-blue-600'
                     : 'btn-secondary'
                 }`}
               >
-                <Heart size={20} className={saved ? 'fill-red-500' : ''} />
+                <Heart size={20} className={saved ? 'fill-blue-500' : ''} />
                 {saved ? 'Saved' : 'Save'}
               </button>
 

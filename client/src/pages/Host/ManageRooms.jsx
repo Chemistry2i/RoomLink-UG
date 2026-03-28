@@ -11,7 +11,7 @@ const ROOM_TYPES = ["Single", "Double", "Twin", "Dorm", "Family", "Suite"]
 const BED_CONFIGURATIONS = ["Single Bed", "Double Bed", "Two Single Beds", "Bunk Beds", "Mixed"]
 const VIEW_TYPES = ["City View", "Garden View", "Street View", "No View"]
 const AMENITIES_LIST = [
-  "Private Bathroom", "Shared Bathroom", "WiFi", "AC", "Fan", "TV",
+  "Private Bathroom", "Shablue Bathroom", "WiFi", "AC", "Fan", "TV",
   "Balcony", "Wardrobe", "Work Desk", "Locker", "Heating",
   "Hot Water", "Hairdryer", "Safe",
 ]
@@ -104,7 +104,7 @@ export default function ManageRooms() {
     const formData = new FormData()
 
 
-    // Add hostel field as required by backend
+    // Add hostel field as requiblue by backend
     formData.append('hostel', hostelId)
 
     Object.entries(form).forEach(([key, val]) => {

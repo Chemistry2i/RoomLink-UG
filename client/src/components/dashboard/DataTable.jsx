@@ -77,7 +77,7 @@ export default function DataTable({
                   placeholder={searchPlaceholder}
                   value={search}
                   onChange={(e) => { setSearch(e.target.value); setPage(1) }}
-                  className="pl-9 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-400 w-56"
+                  className="pl-9 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400 w-56"
                 />
               </div>
             )}
@@ -169,7 +169,7 @@ export default function DataTable({
                   onClick={() => setPage(num)}
                   className={`w-8 h-8 text-xs font-medium rounded-lg transition-colors ${
                     page === num
-                      ? 'bg-red-600 text-white shadow-sm'
+                      ? 'bg-blue-600 text-white shadow-sm'
                       : 'text-gray-500 hover:bg-gray-100'
                   }`}
                 >

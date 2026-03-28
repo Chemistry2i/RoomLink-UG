@@ -93,7 +93,7 @@ export default function LocationPicker({ value, onChange, className = '' }) {
           type="button"
           onClick={handleLocateMe}
           disabled={locating}
-          className="flex items-center gap-1 text-xs text-red-600 hover:text-red-700 font-medium disabled:opacity-50"
+          className="flex items-center gap-1 text-xs text-blue-600 hover:text-blue-700 font-medium disabled:opacity-50"
         >
           <Navigation size={12} />
           {locating ? 'Locating...' : 'Use My Location'}
